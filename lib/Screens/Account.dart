@@ -30,8 +30,7 @@ class _AccountDetailsState extends State<AccountDetails> {
         global.userName=jsonResponse['account']['name'];
         global.emailId=jsonResponse['account']['email'];
         global.mobileNumber.text=jsonResponse['account']['phone'];
-        global.coins = jsonResponse['account']['referalamount'].toString();
-        global.referralCode = jsonResponse['account']['referalcode'].toString();
+        // global.referralCode = jsonResponse['account']['referalcode'].toString();
       });
     }
   }
@@ -150,7 +149,7 @@ class _AccountDetailsState extends State<AccountDetails> {
                   height: 3.0,
                 ),
                 SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.25,
+                    height: MediaQuery.of(context).size.height * 0.15,
                     width: MediaQuery.of(context).size.width * 1,
                     child: Padding(
                       padding: EdgeInsets.only(left: 25.0, right: 25.0),
@@ -170,21 +169,14 @@ class _AccountDetailsState extends State<AccountDetails> {
                                       fontWeight: FontWeight.w500),
                                 ),
                                 Text(
-                                  'Referral Code',
+                                  'Center Code',
                                   textDirection: TextDirection.ltr,
                                   style: TextStyle(
                                       fontSize: 20.0,
                                       fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.w500),
                                 ),
-                                Text(
-                                  'DoDo Coins',
-                                  textDirection: TextDirection.ltr,
-                                  style: TextStyle(
-                                      fontSize: 20.0,
-                                      fontFamily: 'Montserrat',
-                                      fontWeight: FontWeight.w500),
-                                ),
+                                
                               ]),
                           Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -206,25 +198,7 @@ class _AccountDetailsState extends State<AccountDetails> {
                                       fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.w400),
                                 ),
-                                Row(
-                                  children: <Widget>[
-                                    SizedBox(
-                                        height: 25.0,
-                                        width: 25.0,
-                                        child: Image.asset('images/account_dodo.png')),
-                                    Padding(
-                                      padding: EdgeInsets.only(left: 30.0),
-                                      child: Text(
-                                        global.coins,
-                                        textDirection: TextDirection.ltr,
-                                        style: TextStyle(
-                                            fontSize: 20.0,
-                                            fontFamily: 'Montserrat',
-                                            fontWeight: FontWeight.w400),
-                                      ),
-                                    ),
-                                  ],
-                                )
+                               
                               ])
                         ],
                       ),
@@ -233,7 +207,7 @@ class _AccountDetailsState extends State<AccountDetails> {
                   height: 3.0,
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.25,
+                  height: MediaQuery.of(context).size.height * 0.15,
                   width: MediaQuery.of(context).size.width * 1,
                   child: Padding(
                     padding: EdgeInsets.only(left: 25.0, right: 25.0),
@@ -245,11 +219,6 @@ class _AccountDetailsState extends State<AccountDetails> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
-                            Text(
-                              'Share and refer',
-                              textDirection: TextDirection.ltr,
-                              style: TextStyle(fontSize: 20.0),
-                            ),
                             Text(
                               'Contact Us',
                               textDirection: TextDirection.ltr,
@@ -268,17 +237,7 @@ class _AccountDetailsState extends State<AccountDetails> {
                           children: <Widget>[
                             IconButton(
                               icon: Icon(
-                                Icons.share,
-                                size: 26.0,
-                              ),
-                              tooltip: 'Share App',
-                              onPressed: () {
-                                Share.share("meet me on LinkedIN https://in.linkedin.com/in/jaya-prakash-veldanda-756b48179");
-                              },
-                            ),
-                            IconButton(
-                              icon: Icon(
-                                Icons.phone,
+                                Icons.phone_in_talk,
                                 size: 26.0,
                               ),
                               tooltip: 'Contact us',
@@ -297,7 +256,7 @@ class _AccountDetailsState extends State<AccountDetails> {
                               tooltip: 'Sign Out',
                               onPressed: () async {
                                 global.token=null;
-                                Navigator.pushNamed(context,"NumberEntry");
+                                Navigator.pushNamed(context,"LogoScreen");
                               },
                             ),
                           ],

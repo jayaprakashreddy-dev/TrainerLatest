@@ -1,22 +1,29 @@
 import 'package:flutter/cupertino.dart';
 
-final TextEditingController otpEntered =new TextEditingController();
-final TextEditingController mobileNumber =new TextEditingController();
+final TextEditingController otpEntered = new TextEditingController();
+final TextEditingController mobileNumber = new TextEditingController();
 // bool isLogged=false;
-var token=null;
+var token = null;
 //user data
 var userName = "Name";
 var emailId = "Email";
-var referralCode = "Code";
+var referralCode = "1121";
 var coins = "0";
 var phone = "phone";
 var City;
 var UserCity;
-bool login=false;
-var selectedCity="Mumbai";
-var oname;
-var cityname;
-var gymAddress;
+bool login = false;
+var selectedCity = "Mumbai";
+var oname = "0";
+var cityname = "0";
+var gymAddress = "0";
+var currate="123";
+var newrate="234";
+// var index;
+var trainers;
+var AccountDetails,upcomingsessions,pastsessions;
+var unpaidPackages,paidPackages,rates;
+var unpaidPackagesId;
 
 var slots;
 //slot data
@@ -30,22 +37,22 @@ List<String> gpTodayData = new List<String>();
 List<String> gpTomorrowData = new List<String>();
 List<String> gpDayAfterTomData = new List<String>();
 
-var now=DateTime.now();
+var now = DateTime.now();
 var dayAfter;
-var selectedId="5dcaebb32fadc609ce3254cb";
+var selectedId = "5dcaebb32fadc609ce3254cb";
 var centers = null;
 var selectedCenter;
 var selectedIdAddress;
-var activePackages,upcomingSlots,completedSlots,inactivePackages;
+var activePackages, upcomingSlots, completedSlots, inactivePackages;
 var selectedIdName;
-var silverPackages,goldPackages,dodoSPackages,dodoGPackages;
+var silverPackages, goldPackages, dodoSPackages, dodoGPackages;
 int temp;
 
-TextEditingController userNameController =new TextEditingController();
-TextEditingController emailIdController =new TextEditingController();
-TextEditingController referralCodeController =new TextEditingController();
-TextEditingController ownerNAmeController =new TextEditingController();
-TextEditingController gymAddressController =new TextEditingController();
-TextEditingController cityNameController =new TextEditingController();
-TextEditingController addressController =new TextEditingController();
-const url="http://34.93.104.9:3000/api";
+TextEditingController userNameController = new TextEditingController();
+TextEditingController emailIdController = new TextEditingController();
+TextEditingController referralCodeController = new TextEditingController();
+TextEditingController ownerNAmeController = new TextEditingController();
+TextEditingController gymAddressController = new TextEditingController();
+TextEditingController cityNameController = new TextEditingController();
+TextEditingController addressController = new TextEditingController();
+const url = "http://34.93.104.9:3000/api";

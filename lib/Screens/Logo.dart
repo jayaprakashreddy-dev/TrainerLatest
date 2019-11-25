@@ -1,10 +1,10 @@
 import 'package:trainer/Arrangements/ShowImage.dart';
 import 'package:trainer/Arrangements/SizeModification.dart';
-import 'package:trainer/Screens/homeScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:trainer/Screens/Bookings.dart';
 import '../Info/variables.dart' as global;
 import 'package:shared_preferences/shared_preferences.dart';
 class Logo extends StatefulWidget{
@@ -52,7 +52,9 @@ class _LogoState extends State<Logo> {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarColor: Colors.transparent));
     SizeConfig().init(context);
     // TODO: implement build
-    return global.login? HomeScreen():MaterialApp(
+    return 
+    global.login? All():
+    MaterialApp(
         debugShowCheckedModeBanner: false,
         home:Scaffold(
           backgroundColor: Colors.white,

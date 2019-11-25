@@ -87,8 +87,8 @@ class _ProfileEditState extends State<ProfileEdit> {
                           height: MediaQuery.of(context).size.height * 0.09,
                           width: MediaQuery.of(context).size.width * 0.92,
                           child: TextFormField(
-                            keyboardType: TextInputType.number,
-                            controller: global.mobileNumber,
+                            // keyboardType: TextInputType.number,
+                            // controller: global.add,
                             style: TextStyle(
                                 fontSize: 18.0,
                                 fontFamily: 'Montserrat',
@@ -151,11 +151,11 @@ class _ProfileEditState extends State<ProfileEdit> {
                                   Map data={
                                     "name":global.userName,
                                     "email":global.emailId,
-                                    "referalid":global.referralCode,
+                                    "address":global.referralCode,
 
                                   };
                                   var jsonResponse;
-                                  var response =await http.post("http://34.93.104.9:3000/api/account/firstlogin",body: data,headers:{"Content-type": "application/x-www-form-urlencoded","token":global.token} );
+                                  var response =await http.post("http://34.93.104.9:3000/api/workplace/updateaccount",body: data,headers:{"Content-type": "application/x-www-form-urlencoded","token":global.token} );
                                   print("hitted");
                                   if(response.statusCode==200)
                                   {

@@ -163,6 +163,8 @@ class _OtpEnterState extends State<OtpEnter> {
                               // Navigator.pushNamed(context,"AccountPage");
                               // Navigator.pushNamed(context,"CitiesPage");
                               
+                              // Navigator.pushNamed(context, "All");
+                              
                               Navigator.pushNamed(context, "SignUpPage");
                             }
                             else if(jsonResponse['active']==false) {

@@ -1,7 +1,9 @@
 import 'package:trainer/Screens/Account.dart';
+import 'package:trainer/Screens/Bookings.dart';
+import 'package:trainer/Screens/Clients.dart';
 import 'package:trainer/Screens/ProfileEdit.dart';
 import 'package:trainer/Screens/Signup.dart';
-import 'package:trainer/Screens/homeScreen.dart';
+import 'package:trainer/Screens/Trainer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'Screens/Logo.dart';
@@ -29,8 +31,6 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
 
-
-
   final String title;
 
   @override
@@ -38,24 +38,24 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
-
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp(
-      home:Logo(),
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(fontFamily: 'Montserrat'),
-      routes: <String,WidgetBuilder>{
-        'OtpPage':(BuildContext context) => new OtpEnter(),
-        'NumberEntry':(BuildContext context) => new NumberEntry(),
-        'LogoScreen':(BuildContext context) => new Logo(),
-        'HomeScreen':(BuildContext context) => new HomeScreen(),
-        'AccountPage':(BuildContext context) => new AccountDetails(),
-        'SignUpPage':(BuildContext context) => new SignUp(),
-        'ProfileEdit':(BuildContext context) => new ProfileEdit(),
-      }
-    );
+        home: Logo(),
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(fontFamily: 'Montserrat'),
+        routes: <String, WidgetBuilder>{
+          'OtpPage': (BuildContext context) => new OtpEnter(),
+          'NumberEntry': (BuildContext context) => new NumberEntry(),
+          'LogoScreen': (BuildContext context) => new Logo(),
+          'AccountPage': (BuildContext context) => new AccountDetails(),
+          'SignUpPage': (BuildContext context) => new SignUp(),
+          'ProfileEdit': (BuildContext context) => new ProfileEdit(),
+          'All':(BuildContext context) => new All(),
+          'Trainers':(BuildContext context) => new Trainer(),
+          "Bookings":(BuildContext context) => new Bookings(),
+          "Clients":(BuildContext context) => new Clients(),
+          // 'vamshiScreen': (BuildContext context) => new MyApp(),
+        });
   }
 }
