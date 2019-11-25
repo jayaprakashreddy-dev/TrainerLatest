@@ -53,7 +53,7 @@ class _LogoState extends State<Logo> {
     SizeConfig().init(context);
     // TODO: implement build
     return 
-    global.login? All():
+    global.token!=null? All():
     MaterialApp(
         debugShowCheckedModeBanner: false,
         home:Scaffold(

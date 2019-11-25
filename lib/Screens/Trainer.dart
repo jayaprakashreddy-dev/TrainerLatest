@@ -23,35 +23,38 @@ class Trainer extends StatefulWidget {
 class _TrainerState extends State<Trainer> {
   var jsonResponse;
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    getTrainers();
-  }
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   getTrainers();
+  // }
 
-  getTrainers() async {
-    var response = await http
-        .get("http://34.93.104.9:3000/api/workplace/gettrainers", headers: {
-      // "Content-type": "application/x-www-form-urlencoded",
-      "token":global.token,
-          // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Ijc3Mzg2OTU5MjgiLCJpYXQiOjE1NzQ2MDcwNTAsImV4cCI6MTE2NTQ2MDcwNTB9.-eHmrhKWK4dBMESMLOD79QRQGx7J75MneKnkcnmQ6bA",
-    });
-    if (response.statusCode == 200) {
-      jsonResponse = json.decode(response.body);
-      if (jsonResponse['success'] == true) {
-        setState(() {
-          // global.completedSlots = jsonResponse['completedsession'];
-          global.trainers = jsonResponse['trainers'];
-          print(global.trainers);
-          print(global.trainers.length);
-          // getAccountDetails();
-        });
-      }
-    } else {
-      print('error');
-    }
-  }
+  // getTrainers() async {
+  //   var response = await http
+  //       .get("http://34.93.104.9:3000/api/workplace/gettrainers", headers: {
+  //     // "Content-type": "application/x-www-form-urlencoded",
+  //     "token":global.token,
+  //         // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Ijc3Mzg2OTU5MjgiLCJpYXQiOjE1NzQ2MDcwNTAsImV4cCI6MTE2NTQ2MDcwNTB9.-eHmrhKWK4dBMESMLOD79QRQGx7J75MneKnkcnmQ6bA",
+  //   });
+  //   if (response.statusCode == 200) {
+  //     jsonResponse = json.decode(response.body);
+  //     if (jsonResponse['success'] == true) {
+  //       setState(() {
+  //         // global.completedSlots = jsonResponse['completedsession'];
+  //         global.trainers = jsonResponse['trainers'];
+  //         print(global.trainers);
+  //         print(global.trainers.length);
+  //         // getAccountDetails();
+  //       });
+  //     }
+  //   } else {
+  //     print('error');
+  //   }
+  // }
+
+
+  
 
  
 

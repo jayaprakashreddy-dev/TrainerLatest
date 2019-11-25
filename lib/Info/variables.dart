@@ -21,9 +21,17 @@ var currate="123";
 var newrate="234";
 // var index;
 var trainers;
-var AccountDetails,upcomingsessions,pastsessions;
+var AccountDetails,upcomingsessions,pastsessions,spackages,gpackages;
 var unpaidPackages,paidPackages,rates;
 var unpaidPackagesId;
+var address;
+
+var g1=400;
+var g5=600;
+var g10=800;
+var s1=200;
+var s5=400;
+var s10=700;
 
 var slots;
 //slot data

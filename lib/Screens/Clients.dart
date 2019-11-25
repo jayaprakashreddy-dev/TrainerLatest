@@ -17,68 +17,68 @@ class Clients extends StatefulWidget {
 }
 
 class _ClientsState extends State<Clients> {
-  var jsonResponse;
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    getPending();
-  }
+  // var jsonResponse;
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   getPending();
+  // }
 
-  getPending() async {
-    var response = await http
-        .get("http://34.93.104.9:3000/api/workplace/unpaidpackages", headers: {
-      // "Content-type": "application/x-www-form-urlencoded",
-      "token": global.token,
-      // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Ijc3Mzg2OTU5MjgiLCJpYXQiOjE1NzQ2MDcwNTAsImV4cCI6MTE2NTQ2MDcwNTB9.-eHmrhKWK4dBMESMLOD79QRQGx7J75MneKnkcnmQ6bA",
-    });
-    if (response.statusCode == 200) {
-      jsonResponse = json.decode(response.body);
-      if (jsonResponse['success'] == true) {
-        setState(() {
-          // global.completedSlots = jsonResponse['completedsession'];
-          print("unpaid");
-          global.unpaidPackages = jsonResponse['userpacks'];
-          print(global.unpaidPackages);
-          print(global.unpaidPackages.length);
-          print(global.unpaidPackages[0]['account']['name']);
-          print(global.unpaidPackages[0]['package']['total_cost']);
-          // getAccountDetails();
+  // getPending() async {
+  //   var response = await http
+  //       .get("http://34.93.104.9:3000/api/workplace/unpaidpackages", headers: {
+  //     // "Content-type": "application/x-www-form-urlencoded",
+  //     "token": global.token,
+  //     // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Ijc3Mzg2OTU5MjgiLCJpYXQiOjE1NzQ2MDcwNTAsImV4cCI6MTE2NTQ2MDcwNTB9.-eHmrhKWK4dBMESMLOD79QRQGx7J75MneKnkcnmQ6bA",
+  //   });
+  //   if (response.statusCode == 200) {
+  //     jsonResponse = json.decode(response.body);
+  //     if (jsonResponse['success'] == true) {
+  //       setState(() {
+  //         // global.completedSlots = jsonResponse['completedsession'];
+  //         print("unpaid");
+  //         global.unpaidPackages = jsonResponse['userpacks'];
+  //         print(global.unpaidPackages);
+  //         print(global.unpaidPackages.length);
+  //         print(global.unpaidPackages[0]['account']['name']);
+  //         print(global.unpaidPackages[0]['package']['total_cost']);
+  //         // getAccountDetails();
           
-        });
-        getConfirm();
-      }
-    } else {
-      print('error');
-    }
-  }
+  //       });
+  //       getConfirm();
+  //     }
+  //   } else {
+  //     print('error');
+  //   }
+  // }
 
-  getConfirm() async {
-    var response =
-        await http.get("http://34.93.104.9:3000/api/workplace/", headers: {
-      // "Content-type": "application/x-www-form-urlencoded",
-      "token": global.token,
-      // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Ijc3Mzg2OTU5MjgiLCJpYXQiOjE1NzQ2MDcwNTAsImV4cCI6MTE2NTQ2MDcwNTB9.-eHmrhKWK4dBMESMLOD79QRQGx7J75MneKnkcnmQ6bA",
-    });
-    if (response.statusCode == 200) {
-      jsonResponse = json.decode(response.body);
-      if (jsonResponse['success'] == true) {
-        setState(() {
-          print("confirm");
-          // global.completedSlots = jsonResponse['completedsession'];
-          global.unpaidPackages = jsonResponse['userpacks'];
-          print(global.unpaidPackages);
-          print(global.unpaidPackages.length);
-          print(global.unpaidPackages[0]['account']['name']);
-          print(global.unpaidPackages[0]['package_type']);
-          // getAccountDetails();
-          // getPast();
-        });
-      }
-    } else {
-      print('error');
-    }
-  }
+  // getConfirm() async {
+  //   var response =
+  //       await http.get("http://34.93.104.9:3000/api/workplace/", headers: {
+  //     // "Content-type": "application/x-www-form-urlencoded",
+  //     "token": global.token,
+  //     // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Ijc3Mzg2OTU5MjgiLCJpYXQiOjE1NzQ2MDcwNTAsImV4cCI6MTE2NTQ2MDcwNTB9.-eHmrhKWK4dBMESMLOD79QRQGx7J75MneKnkcnmQ6bA",
+  //   });
+  //   if (response.statusCode == 200) {
+  //     jsonResponse = json.decode(response.body);
+  //     if (jsonResponse['success'] == true) {
+  //       setState(() {
+  //         print("confirm");
+  //         // global.completedSlots = jsonResponse['completedsession'];
+  //         global.unpaidPackages = jsonResponse['userpacks'];
+  //         print(global.unpaidPackages);
+  //         print(global.unpaidPackages.length);
+  //         print(global.unpaidPackages[0]['account']['name']);
+  //         print(global.unpaidPackages[0]['package_type']);
+  //         // getAccountDetails();
+  //         // getPast();
+  //       });
+  //     }
+  //   } else {
+  //     print('error');
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -330,36 +330,36 @@ class Confirmed extends StatefulWidget {
 
 class _ConfirmedState extends State<Confirmed> {
 
-  var jsonResponse;
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    getPaid();
-  }
+  // var jsonResponse;
+  // @override
+  // void initState() {
+  //   // TODO: implement initState 
+  //   super.initState();
+  //   getPaid();
+  // }
 
-  getPaid() async {
-    var response = await http
-        .get("http://34.93.104.9:3000/api/workplace/paidpackages", headers: {
-      // "Content-type": "application/x-www-form-urlencoded",
-      "token": global.token,
-      // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Ijc3Mzg2OTU5MjgiLCJpYXQiOjE1NzQ2MDcwNTAsImV4cCI6MTE2NTQ2MDcwNTB9.-eHmrhKWK4dBMESMLOD79QRQGx7J75MneKnkcnmQ6bA",
-    });
-    if (response.statusCode == 200) {
-      jsonResponse = json.decode(response.body);
-      if (jsonResponse['success'] == true) {
-        setState(() {
-          // global.completedSlots = jsonResponse['completedsession'];
-          print("paid");
-          global.paidPackages = jsonResponse['userpacks'];
-          print(global.paidPackages.length0);
+  // getPaid() async {
+  //   var response = await http
+  //       .get("http://34.93.104.9:3000/api/workplace/paidpackages", headers: {
+  //     // "Content-type": "application/x-www-form-urlencoded",
+  //     "token": global.token,
+  //     // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Ijc3Mzg2OTU5MjgiLCJpYXQiOjE1NzQ2MDcwNTAsImV4cCI6MTE2NTQ2MDcwNTB9.-eHmrhKWK4dBMESMLOD79QRQGx7J75MneKnkcnmQ6bA",
+  //   });
+  //   if (response.statusCode == 200) {
+  //     jsonResponse = json.decode(response.body);
+  //     if (jsonResponse['success'] == true) {
+  //       setState(() {
+  //         // global.completedSlots = jsonResponse['completedsession'];
+  //         print("paid");
+  //         global.paidPackages = jsonResponse['userpacks'];
+  //         print(global.paidPackages.length0);
          
-        });
-      }
-    } else {
-      print('error');
-    }
-  }
+  //       });
+  //     }
+  //   } else {
+  //     print('error');
+  //   }
+  // }
   @override
   Widget build(BuildContext context) {
     return ListView(

@@ -45,7 +45,7 @@ class _AccountDetailsState extends State<AccountDetails> {
             icon: new Icon(Icons.arrow_back,
                 color:Colors.red),
             onPressed: (){
-              Navigator.pushNamed(context,"HomeScreen");
+              Navigator.pushNamed(context,"All");
             },
           ),
         ),
@@ -224,11 +224,16 @@ class _AccountDetailsState extends State<AccountDetails> {
                               textDirection: TextDirection.ltr,
                               style: TextStyle(fontSize: 20.0),
                             ),
-                            Text(
+                            InkWell(onTap:(){
+                              global.token=null;
+                                Navigator.pushNamed(context,"LogoScreen");
+                            } ,
+                            child: Text(
                               'Sign out',
                               textDirection: TextDirection.ltr,
                               style: TextStyle(fontSize: 20.0),
-                            )
+                            ),)
+                            
                           ],
                         ),
                         Column(

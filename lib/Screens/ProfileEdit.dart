@@ -88,14 +88,14 @@ class _ProfileEditState extends State<ProfileEdit> {
                           width: MediaQuery.of(context).size.width * 0.92,
                           child: TextFormField(
                             // keyboardType: TextInputType.number,
-                            // controller: global.add,
+                            controller: global.address,
                             style: TextStyle(
                                 fontSize: 18.0,
                                 fontFamily: 'Montserrat',
                                 fontWeight: FontWeight.w500),
                             decoration: InputDecoration(
-                              labelText: 'Phone Number',
-                              hintText: global.mobileNumber.text,
+                              labelText: 'Address',
+                              hintText: global.address,
                             ),
                           ),
                         ),
@@ -141,6 +141,7 @@ class _ProfileEditState extends State<ProfileEdit> {
                                 ),
                                 elevation: 2.0,
                                 onPressed: ()async{
+                                  print("jp");
                                   global.userName=global.userNameController.text;
                                   // global.UserName=global.MobileNumber.text;
                                   global.emailId=global.emailIdController.text;
@@ -149,9 +150,9 @@ class _ProfileEditState extends State<ProfileEdit> {
 
 
                                   Map data={
-                                    "name":global.userName,
-                                    "email":global.emailId,
-                                    "address":global.referralCode,
+                                    "name":global.userName.toString(),
+                                    "email":global.emailId.toString(),
+                                    "address":global.address.toString(),
 
                                   };
                                   var jsonResponse;
@@ -165,35 +166,26 @@ class _ProfileEditState extends State<ProfileEdit> {
                                     print(jsonResponse);
                                     if(jsonResponse['success']==true)
                                     {
-                                      if(jsonResponse["referalstatus"]==true)
-                                      {
+                                      
                                         print("true");
                                         // print(jsonResponse['token']);
                                         // print("object");
                                         // global.isLogged=true;
-                                        print(global.userName);
-                                        print(global.emailId);
-                                        print(global.emailIdController.text);
+                                        // print(global.userName);
+                                        // print(global.emailId);
+                                        // print(global.emailIdController.text);
 
-                                        Navigator.pushNamed(context, "SignUpPage");
-                                      }
-                                      else{
-                                        print("no referral status");
-                                        print(global.userName);
-                                        print(global.emailId);
-                                        print(global.userName);
-                                        print(global.referralCode);
-                                        print(global.emailIdController.text);
-                                        global.referralCode="No";
-                                        Navigator.pushNamed(context, "AccountPage");
-
-                                      }
+                                        // Navigator.pushNamed(context, "SignUpPage");
+                                        Navigator.pushNamed(context,"All");
+                                     
                                     }
                                     else{
                                       // OtpError();
                                       // callSnackBar("Please Enter correct OTP");
+                                      Navigator.pushNamed(context,"All");
                                     }
                                   }
+                                  Navigator.pushNamed(context,"All");
 
 
                                 },

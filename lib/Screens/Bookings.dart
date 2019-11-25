@@ -24,15 +24,191 @@ class _AllState extends State<All> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    getUpcoming();
+    getData();
+    // getUpcoming();
     // getPast();
+    // getAccountDetails();
+    // getPending();
+    // getConfirm();
   }
+
+  getData()async{
+
+
+    getUpcoming();
+    getPast();
+    getAccountDetails();
+    getPending();
+    getConfirm();
+    getPaid();
+    getTrainers();
+    // getPackagesS();
+    // getPackagesG();
+
+    
+  }
+
+
+// getPackages() async {
+  // 
+//     var response = await http
+//         .post("http://34.93.104.9:3000/api/workplace/getpackages", headers: {
+//       // "Content-type": "application/x-www-form-urlencoded",
+//       "token":global.token,
+//           // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Ijc3Mzg2OTU5MjgiLCJpYXQiOjE1NzQ2MDcwNTAsImV4cCI6MTE2NTQ2MDcwNTB9.-eHmrhKWK4dBMESMLOD79QRQGx7J75MneKnkcnmQ6bA",
+//     });
+//     if (response.statusCode == 200) {
+//       jsonResponse = json.decode(response.body);
+//       if (jsonResponse['success'] == true) {
+//         setState(() {
+//           // global.completedSlots = jsonResponse['completedsession'];
+//           global.Spackages = jsonResponse['packages'];
+//           // print(global.trainers);
+//           // print(global.trainers.length);
+//           // getAccountDetails();
+//         });
+//       }
+//     } else {
+//       print('error');
+//     }
+//   }
+
+
+// getPackages() async {
+  // 
+//     var response = await http
+//         .post("http://34.93.104.9:3000/api/workplace/getpackages", headers: {
+//       // "Content-type": "application/x-www-form-urlencoded",
+//       "token":global.token,
+//           // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Ijc3Mzg2OTU5MjgiLCJpYXQiOjE1NzQ2MDcwNTAsImV4cCI6MTE2NTQ2MDcwNTB9.-eHmrhKWK4dBMESMLOD79QRQGx7J75MneKnkcnmQ6bA",
+//     });
+//     if (response.statusCode == 200) {
+//       jsonResponse = json.decode(response.body);
+//       if (jsonResponse['success'] == true) {
+//         setState(() {
+//           // global.completedSlots = jsonResponse['completedsession'];
+//           global.packages = jsonResponse['packages'];
+//           // print(global.trainers);
+//           // print(global.trainers.length);
+//           // getAccountDetails();
+//         });
+//       }
+//     } else {
+//       print('error');
+//     }
+//   }
+
+
+
+  
+  getTrainers() async {
+    var response = await http
+        .get("http://34.93.104.9:3000/api/workplace/gettrainers", headers: {
+      // "Content-type": "application/x-www-form-urlencoded",
+      "token":global.token,
+          // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Ijc3Mzg2OTU5MjgiLCJpYXQiOjE1NzQ2MDcwNTAsImV4cCI6MTE2NTQ2MDcwNTB9.-eHmrhKWK4dBMESMLOD79QRQGx7J75MneKnkcnmQ6bA",
+    });
+    if (response.statusCode == 200) {
+      jsonResponse = json.decode(response.body);
+      if (jsonResponse['success'] == true) {
+        setState(() {
+          // global.completedSlots = jsonResponse['completedsession'];
+          global.trainers = jsonResponse['trainers'];
+          print(global.trainers);
+          print(global.trainers.length);
+          // getAccountDetails();
+        });
+      }
+    } else {
+      print('error');
+    }
+  }
+
+
+  getPaid() async {
+    var response = await http
+        .get("http://34.93.104.9:3000/api/workplace/paidpackages", headers: {
+      // "Content-type": "application/x-www-form-urlencoded",
+      "token": global.token,
+      // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Ijc3Mzg2OTU5MjgiLCJpYXQiOjE1NzQ2MDcwNTAsImV4cCI6MTE2NTQ2MDcwNTB9.-eHmrhKWK4dBMESMLOD79QRQGx7J75MneKnkcnmQ6bA",
+    });
+    if (response.statusCode == 200) {
+      jsonResponse = json.decode(response.body);
+      if (jsonResponse['success'] == true) {
+        setState(() {
+          // global.completedSlots = jsonResponse['completedsession'];
+          print("paid");
+          global.paidPackages = jsonResponse['userpacks'];
+          print(global.paidPackages.length0);
+         
+        });
+      }
+    } else {
+      print('error');
+    }
+  }
+
+   getPending() async {
+    var response = await http
+        .get("http://34.93.104.9:3000/api/workplace/unpaidpackages", headers: {
+      // "Content-type": "application/x-www-form-urlencoded",
+      "token": global.token,
+      // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Ijc3Mzg2OTU5MjgiLCJpYXQiOjE1NzQ2MDcwNTAsImV4cCI6MTE2NTQ2MDcwNTB9.-eHmrhKWK4dBMESMLOD79QRQGx7J75MneKnkcnmQ6bA",
+    });
+    if (response.statusCode == 200) {
+      jsonResponse = json.decode(response.body);
+      if (jsonResponse['success'] == true) {
+        setState(() {
+          // global.completedSlots = jsonResponse['completedsession'];
+          print("unpaid");
+          global.unpaidPackages = jsonResponse['userpacks'];
+          // print(global.unpaidPackages);
+          // print(global.unpaidPackages.length);
+          // print(global.unpaidPackages[0]['account']['name']);
+          // print(global.unpaidPackages[0]['package']['total_cost']);
+          // getAccountDetails();
+          
+        });
+        // getConfirm();
+      }
+    } else {
+      print('error');
+    }
+  }
+
+  getConfirm() async {
+    var response =
+        await http.get("http://34.93.104.9:3000/api/workplace/", headers: {
+      // "Content-type": "application/x-www-form-urlencoded",
+      "token": global.token,
+      // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Ijc3Mzg2OTU5MjgiLCJpYXQiOjE1NzQ2MDcwNTAsImV4cCI6MTE2NTQ2MDcwNTB9.-eHmrhKWK4dBMESMLOD79QRQGx7J75MneKnkcnmQ6bA",
+    });
+    if (response.statusCode == 200) {
+      jsonResponse = json.decode(response.body);
+      if (jsonResponse['success'] == true) {
+        setState(() {
+          print("confirm");
+          // global.completedSlots = jsonResponse['completedsession'];
+          global.unpaidPackages = jsonResponse['userpacks'];
+          print(global.unpaidPackages);
+          print(global.unpaidPackages.length);
+          print(global.unpaidPackages[0]['account']['name']);
+          print(global.unpaidPackages[0]['package_type']);
+          // getAccountDetails();
+          // getPast();
+        });
+      }
+    } else {
+      print('error');
+    }
+  }
+
 
   getUpcoming() async {
     var response = await http.get(
         "http://34.93.104.9:3000/api/workplace/upcomingsessions",
         headers: {
-          // "Content-type": "application/x-www-form-urlencoded",
+          "Content-type": "application/x-www-form-urlencoded",
           "token": global.token,
           // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Ijc3Mzg2OTU5MjgiLCJpYXQiOjE1NzQ2MDcwNTAsImV4cCI6MTE2NTQ2MDcwNTB9.-eHmrhKWK4dBMESMLOD79QRQGx7J75MneKnkcnmQ6bA",
         });
@@ -42,14 +218,14 @@ class _AllState extends State<All> {
         setState(() {
           // global.completedSlots = jsonResponse['completedsession'];
           global.upcomingsessions = jsonResponse['sessions'];
-          print(global.upcomingsessions);
-          print(global.upcomingsessions.length);
-          print(global.upcomingsessions[0]['account']['name']);
-          print(global.upcomingsessions[0]['trainer_allotted']['name']);
+          // print(global.upcomingsessions);
+          // print(global.upcomingsessions.length);
+          // print(global.upcomingsessions[0]['account']['name']);
+          // print(global.upcomingsessions[0]['trainer_allotted']['name']);
           // getAccountDetails();
                 
            });
-           getPast(); 
+          //  getPast(); 
       }
     } else {
       print('error');
@@ -69,11 +245,11 @@ class _AllState extends State<All> {
         setState(() {
           // global.completedSlots = jsonResponse['completedsession'];
           global.pastsessions = jsonResponse['sessions'];
-          print(global.pastsessions);
-          print(global.pastsessions.length);
-          print(global.pastsessions[0]['account']['name']);
-          print(global.pastsessions[0]['workplace']['address']);
-          getAccountDetails();
+          // print(global.pastsessions);
+          // print(global.pastsessions.length);
+          // print(global.pastsessions[0]['account']['name']);
+          // print(global.pastsessions[0]['workplace']['address']);
+          // getAccountDetails();
         });
       }
     } else {
@@ -93,9 +269,9 @@ class _AllState extends State<All> {
       if (jsonResponse['success'] == true) {
         setState(() {
         global.AccountDetails=jsonResponse;
-        print(global.AccountDetails);
-        global.referralCode=global.AccountDetails['workplace']['uid'];
-        print(global.referralCode);
+        // print(global.AccountDetails);
+        // global.referralCode=global.AccountDetails['workplace']['uid'];
+        // print(global.referralCode);
         //  global.userName=jsonResp,
         //  global.phone=,
         });
