@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../Info/variables.dart' as global;
 import 'package:url_launcher/url_launcher.dart';
 
@@ -224,9 +225,16 @@ class _AccountDetailsState extends State<AccountDetails> {
                               textDirection: TextDirection.ltr,
                               style: TextStyle(fontSize: 20.0),
                             ),
-                            InkWell(onTap:(){
-                              global.token=null;
+                            InkWell(
+                              onTap:()async  {
+                                global.login=false;
+                                global.token=null;
+                                print("signing out");
+                                print(global.token);
+                                SharedPreferences prefs = await SharedPreferences.getInstance();
+                            prefs.setString('token',global.token);
                                 Navigator.pushNamed(context,"LogoScreen");
+                                
                             } ,
                             child: Text(
                               'Sign out',

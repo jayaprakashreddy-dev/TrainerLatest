@@ -238,7 +238,7 @@ class _PendingState extends State<Pending> {
                                         onTap: () {
                                           global.unpaidPackagesId =
                                               global.unpaidPackages[index]
-                                                  ['package']['_id'];
+                                                  ['_id'];
                                           print(global.unpaidPackagesId);
                                           gym(context);
                                         },

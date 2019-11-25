@@ -148,7 +148,7 @@ class _TrainerAccessState extends State<TrainerAccess> {
                             // SizedBox(
                             //   height: MediaQuery.of(context).size.height*0.001,
                             //   child: Fetchdetails(index) ,),
-                           
+                          Fetchdetails(index) ,
                           Text(global.trainers[index]['name']==null?"":global.trainers[index]['name'],
                               style: textStyle()),
                           IconButton(
@@ -218,23 +218,23 @@ class _TrainerAccessState extends State<TrainerAccess> {
 
   // Fetchdetails() {}
 
-  // // Fetchdetails(int index) {
+  Fetchdetails(int index) {
 
-  // //   // golVal1=global.trainers[index]['category'].contains("gold");
-  // //   // silVal1=global.trainers[index]['category'].contains("silver");
-  // //   // gruVal1=global.trainers[index]['category'].contains("group");
+    golVal1=global.trainers[index]['category'].contains("gold");
+    silVal1=global.trainers[index]['category'].contains("silver");
+    gruVal1=global.trainers[index]['category'].contains("group");
 
-  // // }
+  }
 }
 
-Fetch() {
+// Fetch() {
 
-}
+// }
 
-class Fetchdetails extends Trainer
-{
-  Fetchdetails(int index);
+// class Fetchdetails extends Trainer
+// {
+//   Fetchdetails(int index);
   
   
 
-}
+// }

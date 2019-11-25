@@ -1,9 +1,12 @@
 // import 'package:dooit/Arrangements/SizeModification.dart';
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:trainer/Arrangements/SizeModification.dart';
 import '../Info/variables.dart' as global;
+import 'package:http/http.dart' as http;
 
 class SankethHome extends StatefulWidget {
   @override
@@ -17,9 +20,33 @@ class _SankethHomeState extends State<SankethHome> {
   final stext1 = TextEditingController();
   final stext5 = TextEditingController();
   final stext10 = TextEditingController();
+  
+
+
+
+  
 
   void initState() {
     super.initState();
+    global.s1=global.spackages[0]['total_cost']==null?global.s1:global.spackages[0]['total_cost'];
+    global.s1id=global.spackages[0]['_id']==null?global.s1id:global.spackages[0]['_id'];
+
+    global.s5=global.spackages[1]['total_cost']==null?global.s5:global.spackages[1]['total_cost'];
+    global.s5id=global.spackages[1]['_id']==null?global.s5id:global.spackages[1]['_id'];
+
+    global.s10=global.spackages[2]['total_cost']==null?global.s5:global.spackages[2]['total_cost'];
+    global.s10id=global.spackages[2]['_id']==null?global.s10id:global.spackages[2]['_id'];
+
+
+
+    global.g1=global.spackages[0]['total_cost']==null?global.g1:global.spackages[0]['total_cost'];
+    global.g1id=global.spackages[0]['_id']==null?global.g1id:global.spackages[0]['_id'];
+    
+    global.g5=global.spackages[1]['total_cost']==null?global.g5:global.spackages[1]['total_cost'];
+    global.g5id=global.spackages[1]['_id']==null?global.g5id:global.spackages[1]['_id'];
+
+    global.g10=global.spackages[2]['total_cost']==null?global.g5:global.spackages[2]['total_cost'];
+    global.g10id=global.spackages[2]['_id']==null?global.g10id:global.spackages[2]['_id'];
 
     // myController.addListener();
   }
@@ -893,71 +920,15 @@ class _SankethHomeState extends State<SankethHome> {
                           ),
                         ),
                       ),
-                      //       Align(
-                      //         alignment: Alignment.topLeft,
-                      //         child: Text(
-                      //           'Wed 30 Oct 6:00 A.M-6:50 A.M ',
-                      //           style: TextStyle(
-                      //             color: Colors.black.withOpacity(0.7),
-                      //             fontSize:
-                      //                 MediaQuery.of(context).size.height * 0.025,
-                      //           ),
-                      //         ),
-                      //       ),
-                      //       Align(
-                      //         alignment: Alignment.topLeft,
-                      //         child: Text(
-                      //           'Cult galleria ',
-                      //           style: TextStyle(
-                      //             color: Colors.black.withOpacity(0.7),
-                      //             fontSize:
-                      //                 MediaQuery.of(context).size.height * 0.025,
-                      //           ),
-                      //         ),
-                      //       ),
-                      //     ],
-                      //   ),
-                      // ),
-                      // new Container(
-                      //   padding: EdgeInsets.only(
-                      //     top: MediaQuery.of(context).size.height * 0.04,
-                      //     left: MediaQuery.of(context).size.width * 0.05,
-                      //   ),
-                      //   color: Colors.grey.withOpacity(0.2),
-                      //   height: MediaQuery.of(context).size.height * 0.24,
-                      //   width: MediaQuery.of(context).size.width * 1.0,
-                      //   child: Column(
-                      //     children: <Widget>[
-                      //       Text(
-                      //         'Address:                                                           ',
-                      //         style: TextStyle(
-                      //           color: Colors.black,
-                      //           fontSize: MediaQuery.of(context).size.height * 0.03,
-                      //           fontWeight: FontWeight.bold,
-                      //         ),
-                      //       ),
-                      //       Text(
-                      //         '2nd Floor, Galleria Market, DLF Phase 4, Sector 28, Gurugram - 122002 ',
-                      //         style: TextStyle(
-                      //           color: Colors.black.withOpacity(0.7),
-                      //           fontSize: MediaQuery.of(context).size.height * 0.02,
-                      //         ),
-                      //       ),
                       new Container(
                         padding: EdgeInsets.only(
                           top: MediaQuery.of(context).size.height * 0.04,
                           left: MediaQuery.of(context).size.width * 0.05,
                         ),
                         color: Colors.grey.withOpacity(0.2),
-                        // height: MediaQuery.of(context).size.height * 0.34,
                         width: MediaQuery.of(context).size.width * 1.0,
                         child: RaisedButton(
                           color: Colors.red,
-                          // padding: EdgeInsets.only(
-                          //   // top:MediaQuery.of(context).size.height*0.3,
-                          //   left: MediaQuery.of(context).size.width * 0.03,
-                          //   right: MediaQuery.of(context).size.width * 0.09,
-                          // ),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(27.0),
                           ),
@@ -967,7 +938,34 @@ class _SankethHomeState extends State<SankethHome> {
                               color: Colors.white,
                             ),
                           ),
-                          onPressed: () {
+                          onPressed: ()async {
+
+                            var jsonResponse;
+                              Map data={
+                                  "category":"gold",
+                                };
+                                var response = await http
+                                    .post("http://34.93.104.9:3000/api/workplace/getpackages",body: data, headers: {
+                                  // "Content-type": "application/x-www-form-urlencoded",
+                                  "token":global.token,
+                                      // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Ijc3Mzg2OTU5MjgiLCJpYXQiOjE1NzQ2MDcwNTAsImV4cCI6MTE2NTQ2MDcwNTB9.-eHmrhKWK4dBMESMLOD79QRQGx7J75MneKnkcnmQ6bA",
+                                });
+                                if (response.statusCode == 200) {
+                                  jsonResponse = json.decode(response.body);
+                                  if (jsonResponse['success'] == true) {
+                                    setState(() {
+                                      // global.completedSlots = jsonResponse['completedsession'];
+                                      global.gpackages = jsonResponse['packages'];
+                                      // print(global.trainers);
+                                      // print(global.trainers.length);
+                                      // getAccountDetails();
+                                    });
+                                  }
+                                } 
+                                else {
+                                  print('error');
+                                }
+    
                             Navigator.pop(context);
                           },
                         ),
@@ -1012,56 +1010,6 @@ class _SankethHomeState extends State<SankethHome> {
                           ),
                         ),
                       ),
-                      //       Align(
-                      //         alignment: Alignment.topLeft,
-                      //         child: Text(
-                      //           'Wed 30 Oct 6:00 A.M-6:50 A.M ',
-                      //           style: TextStyle(
-                      //             color: Colors.black.withOpacity(0.7),
-                      //             fontSize:
-                      //                 MediaQuery.of(context).size.height * 0.025,
-                      //           ),
-                      //         ),
-                      //       ),
-                      //       Align(
-                      //         alignment: Alignment.topLeft,
-                      //         child: Text(
-                      //           'Cult galleria ',
-                      //           style: TextStyle(
-                      //             color: Colors.black.withOpacity(0.7),
-                      //             fontSize:
-                      //                 MediaQuery.of(context).size.height * 0.025,
-                      //           ),
-                      //         ),
-                      //       ),
-                      //     ],
-                      //   ),
-                      // ),
-                      // new Container(
-                      //   padding: EdgeInsets.only(
-                      //     top: MediaQuery.of(context).size.height * 0.04,
-                      //     left: MediaQuery.of(context).size.width * 0.05,
-                      //   ),
-                      //   color: Colors.grey.withOpacity(0.2),
-                      //   height: MediaQuery.of(context).size.height * 0.24,
-                      //   width: MediaQuery.of(context).size.width * 1.0,
-                      //   child: Column(
-                      //     children: <Widget>[
-                      //       Text(
-                      //         'Address:                                                           ',
-                      //         style: TextStyle(
-                      //           color: Colors.black,
-                      //           fontSize: MediaQuery.of(context).size.height * 0.03,
-                      //           fontWeight: FontWeight.bold,
-                      //         ),
-                      //       ),
-                      //       Text(
-                      //         '2nd Floor, Galleria Market, DLF Phase 4, Sector 28, Gurugram - 122002 ',
-                      //         style: TextStyle(
-                      //           color: Colors.black.withOpacity(0.7),
-                      //           fontSize: MediaQuery.of(context).size.height * 0.02,
-                      //         ),
-                      //       ),
                       new Container(
                         padding: EdgeInsets.only(
                           top: MediaQuery.of(context).size.height * 0.04,
@@ -1088,6 +1036,7 @@ class _SankethHomeState extends State<SankethHome> {
                           ),
                           onPressed: () {
                             Navigator.pop(context);
+
                           },
                         ),
                       ),

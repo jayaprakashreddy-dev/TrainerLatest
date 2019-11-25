@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' as prefix0;
 import 'package:flutter/widgets.dart';
 import 'package:trainer/Arrangements/ShowImage.dart';
 // import 'bookscreen.dart';
@@ -18,6 +20,25 @@ class All extends StatefulWidget {
 }
 
 class _AllState extends State<All> {
+
+
+final GlobalKey<ScaffoldState> _scaffoldKey=GlobalKey<ScaffoldState>();
+    void callSnackBar(String msg,[int er])
+  {
+    
+      // msg="There is no record with this user, please register first by clicking Register or check the user mail id or Password";
+      final SnackBar=new prefix0.SnackBar(
+      content: new Text(msg),
+      duration: new Duration(seconds: 5),
+      action: new SnackBarAction(label: "Exit",
+      onPressed: (){
+        // Navigator.pushNamed(context, "Register");
+        exit(0);
+      },),
+    );
+     _scaffoldKey.currentState.showSnackBar(SnackBar);
+    
+  }
 
   var jsonResponse;
   @override
@@ -42,61 +63,66 @@ class _AllState extends State<All> {
     getConfirm();
     getPaid();
     getTrainers();
-    // getPackagesS();
-    // getPackagesG();
+    getPackagesS();
+    getPackagesG();
 
     
   }
 
 
-// getPackages() async {
-  // 
-//     var response = await http
-//         .post("http://34.93.104.9:3000/api/workplace/getpackages", headers: {
-//       // "Content-type": "application/x-www-form-urlencoded",
-//       "token":global.token,
-//           // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Ijc3Mzg2OTU5MjgiLCJpYXQiOjE1NzQ2MDcwNTAsImV4cCI6MTE2NTQ2MDcwNTB9.-eHmrhKWK4dBMESMLOD79QRQGx7J75MneKnkcnmQ6bA",
-//     });
-//     if (response.statusCode == 200) {
-//       jsonResponse = json.decode(response.body);
-//       if (jsonResponse['success'] == true) {
-//         setState(() {
-//           // global.completedSlots = jsonResponse['completedsession'];
-//           global.Spackages = jsonResponse['packages'];
-//           // print(global.trainers);
-//           // print(global.trainers.length);
-//           // getAccountDetails();
-//         });
-//       }
-//     } else {
-//       print('error');
-//     }
-//   }
+getPackagesS() async {
+  
+    Map data={
+      "category":"silver",
+    };
+    var response = await http
+        .post("http://34.93.104.9:3000/api/workplace/getpackages",body: data, headers: {
+      // "Content-type": "application/x-www-form-urlencoded",
+      "token":global.token,
+          // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Ijc3Mzg2OTU5MjgiLCJpYXQiOjE1NzQ2MDcwNTAsImV4cCI6MTE2NTQ2MDcwNTB9.-eHmrhKWK4dBMESMLOD79QRQGx7J75MneKnkcnmQ6bA",
+    });
+    if (response.statusCode == 200) {
+      jsonResponse = json.decode(response.body);
+      if (jsonResponse['success'] == true) {
+        setState(() {
+          // global.completedSlots = jsonResponse['completedsession'];
+          global.spackages = jsonResponse['packages'];
+          // print(global.trainers);
+          // print(global.trainers.length);
+          // getAccountDetails();
+        });
+      }
+    } else {
+      print('error');
+    }
+  }
 
 
-// getPackages() async {
-  // 
-//     var response = await http
-//         .post("http://34.93.104.9:3000/api/workplace/getpackages", headers: {
-//       // "Content-type": "application/x-www-form-urlencoded",
-//       "token":global.token,
-//           // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Ijc3Mzg2OTU5MjgiLCJpYXQiOjE1NzQ2MDcwNTAsImV4cCI6MTE2NTQ2MDcwNTB9.-eHmrhKWK4dBMESMLOD79QRQGx7J75MneKnkcnmQ6bA",
-//     });
-//     if (response.statusCode == 200) {
-//       jsonResponse = json.decode(response.body);
-//       if (jsonResponse['success'] == true) {
-//         setState(() {
-//           // global.completedSlots = jsonResponse['completedsession'];
-//           global.packages = jsonResponse['packages'];
-//           // print(global.trainers);
-//           // print(global.trainers.length);
-//           // getAccountDetails();
-//         });
-//       }
-//     } else {
-//       print('error');
-//     }
-//   }
+getPackagesG() async {
+  Map data={
+      "category":"gold",
+    };
+    var response = await http
+        .post("http://34.93.104.9:3000/api/workplace/getpackages",body: data, headers: {
+      // "Content-type": "application/x-www-form-urlencoded",
+      "token":global.token,
+          // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Ijc3Mzg2OTU5MjgiLCJpYXQiOjE1NzQ2MDcwNTAsImV4cCI6MTE2NTQ2MDcwNTB9.-eHmrhKWK4dBMESMLOD79QRQGx7J75MneKnkcnmQ6bA",
+    });
+    if (response.statusCode == 200) {
+      jsonResponse = json.decode(response.body);
+      if (jsonResponse['success'] == true) {
+        setState(() {
+          // global.completedSlots = jsonResponse['completedsession'];
+          global.gpackages = jsonResponse['packages'];
+          // print(global.trainers);
+          // print(global.trainers.length);
+          // getAccountDetails();
+        });
+      }
+    } else {
+      print('error');
+    }
+  }
 
 
 
@@ -288,10 +314,13 @@ class _AllState extends State<All> {
       return new TextStyle(
           color: Colors.black,
           fontWeight: FontWeight.w900,
-          fontSize: MediaQuery.of(context).size.height / 32.0);
+          fontSize: MediaQuery.of(context).size.height / 40.0);
     }
 
     return WillPopScope(onWillPop: (){
+
+
+      callSnackBar("Click Exit to Leave App");
       
     },
    child: MaterialApp(
@@ -303,6 +332,7 @@ class _AllState extends State<All> {
       home: new DefaultTabController(
         length: 3,
         child: new Scaffold(
+          key: _scaffoldKey,
           appBar: PreferredSize(
             preferredSize: Size.fromHeight(MediaQuery.of(context).size.height /
                 6.5), // here the desired height
@@ -546,6 +576,7 @@ class _UpcomingState extends State<Upcoming> {
                                           Text(
                                             "Trainer: " +
                                                 global.upcomingsessions[index]
+                                                
                                                         ['trainer_allotted']
                                                     ['name'],
                                             // 'Trainer: '+global.upcomingsessions[index]['account']['name']==null?"":global.upcomingsessions['account']['name'],

@@ -33,6 +33,9 @@ var s1=200;
 var s5=400;
 var s10=700;
 
+var s1id,s5id,s10id;
+var g1id,g5id,g10id;
+
 var slots;
 //slot data
 List<String> sTodayData = new List<String>();

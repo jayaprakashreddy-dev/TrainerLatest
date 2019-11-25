@@ -41,6 +41,10 @@ class _LogoState extends State<Logo> {
     if(global.token!=null) {
       global.login=true;
     }
+    else if(global.token==0)
+    {
+      global.login=false;
+    }
     // else
     // {
     //   global.token=false;
@@ -53,7 +57,7 @@ class _LogoState extends State<Logo> {
     SizeConfig().init(context);
     // TODO: implement build
     return 
-    global.token!=null? All():
+    global.login? All():
     MaterialApp(
         debugShowCheckedModeBanner: false,
         home:Scaffold(
