@@ -234,7 +234,7 @@ class _SignUpState extends State<SignUp> {
               print(global.emailId);
               // print(global.emailIdController.text);
 
-              Navigator.pushNamed(context, "Trainers");
+              Navigator.pushNamed(context, "Bookings");
               // Navigator.pushNamed(context, "All");
             } else {
               // OtpError();

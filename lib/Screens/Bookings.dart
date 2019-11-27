@@ -380,6 +380,7 @@ getPackagesG() async {
                             print(global.referralCode);
                             print("pressed");
                             Navigator.pushNamed(context, "AccountPage");
+                            // Navigator.pushNamed(context,"SignUpPage");
                           },
                         )
                       ],

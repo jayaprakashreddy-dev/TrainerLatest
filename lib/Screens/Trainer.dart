@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:trainer/Screens/Clients.dart';
+import 'package:trainer/Screens/SessionTypes.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../Info/variables.dart' as global;
 
@@ -65,7 +67,7 @@ class _TrainerState extends State<Trainer> {
       theme: ThemeData(primaryColor: Colors.white, accentColor: Colors.red),
       debugShowCheckedModeBanner: false,
       home: new DefaultTabController(
-        length: 1,
+        length: 3,
         child: new Scaffold(
           appBar: PreferredSize(
             preferredSize: Size.fromHeight(MediaQuery.of(context).size.height /
@@ -76,7 +78,7 @@ class _TrainerState extends State<Trainer> {
               bottom: TabBar(
                 tabs: <Widget>[
                   Tab(
-                    child: Text("Trainer Access",
+                    child: Text("Session Types",
                         textAlign: TextAlign.left,
                         style: TextStyle(
                             color: Colors.black,
@@ -84,13 +86,30 @@ class _TrainerState extends State<Trainer> {
                             fontSize:
                                 MediaQuery.of(context).size.height / 35.0)),
                   ),
+                  Tab(child:  Text("Trainer Access",
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                            color: Colors.black,
+                            backgroundColor: Colors.white,
+                            fontSize:
+                                MediaQuery.of(context).size.height / 35.0)),),
+                       Tab(child:  Text("Rates",
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                            color: Colors.black,
+                            backgroundColor: Colors.white,
+                            fontSize:
+                                MediaQuery.of(context).size.height / 35.0)),),          
                 ],
               ),
             ),
           ),
           body: TabBarView(
             children: <Widget>[
+              SessionTypes(),
               TrainerAccess(),
+              Rates(),
+              
             ],
           ),
         ),
