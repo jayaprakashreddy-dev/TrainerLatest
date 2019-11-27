@@ -939,13 +939,31 @@ class _SankethHomeState extends State<SankethHome> {
                             ),
                           ),
                           onPressed: ()async {
-
+                            print("Clicked for silver rate confi");
+                            print(global.token);
+                            Navigator.pop(context);
                             var jsonResponse;
                               Map data={
-                                  "category":"gold",
+                                  "packages":[
+                                  {
+                                      "_id": global.s1id.toString(),
+                                      "total_cost": global.s1
+                                  },
+                                  {
+                                      "_id": global.s5id,
+                                      "total_cost": global.s5id
+                                  },
+                                  {
+                                      "_id": global.s10id,
+                                      "total_cost": global.s10
+                                  }
+                                  // .toString()
+                              ]
+                              // .map
+
                                 };
                                 var response = await http
-                                    .post("http://34.93.104.9:3000/api/workplace/getpackages",body: data, headers: {
+                                    .post("http://34.93.104.9:3000/api/workplace/updaterates",body: data, headers: {
                                   // "Content-type": "application/x-www-form-urlencoded",
                                   "token":global.token,
                                       // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Ijc3Mzg2OTU5MjgiLCJpYXQiOjE1NzQ2MDcwNTAsImV4cCI6MTE2NTQ2MDcwNTB9.-eHmrhKWK4dBMESMLOD79QRQGx7J75MneKnkcnmQ6bA",
@@ -955,7 +973,8 @@ class _SankethHomeState extends State<SankethHome> {
                                   if (jsonResponse['success'] == true) {
                                     setState(() {
                                       // global.completedSlots = jsonResponse['completedsession'];
-                                      global.gpackages = jsonResponse['packages'];
+                                      // global.gpackages = jsonResponse['packages'];
+                                      print("Success");
                                       // print(global.trainers);
                                       // print(global.trainers.length);
                                       // getAccountDetails();

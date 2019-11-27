@@ -268,7 +268,12 @@ class _AccountDetailsState extends State<AccountDetails> {
                               ),
                               tooltip: 'Sign Out',
                               onPressed: () async {
+                                global.login=false;
                                 global.token=null;
+                                print("signing out");
+                                print(global.token);
+                                SharedPreferences prefs = await SharedPreferences.getInstance();
+                            prefs.setString('token',global.token);
                                 Navigator.pushNamed(context,"LogoScreen");
                               },
                             ),

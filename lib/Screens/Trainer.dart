@@ -140,7 +140,7 @@ class _TrainerAccessState extends State<TrainerAccess> {
                 : ListView.builder(
                     itemCount: global.trainers.length,
                     itemBuilder: (context, index) {
-                      return global.trainers[index]==null?Center(child: Text("no data")):
+                      return global.trainers[index]==null?Center(child: Text("no data for trainers")):
                        Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: <Widget>[
@@ -148,7 +148,7 @@ class _TrainerAccessState extends State<TrainerAccess> {
                             // SizedBox(
                             //   height: MediaQuery.of(context).size.height*0.001,
                             //   child: Fetchdetails(index) ,),
-                          Fetchdetails(index) ,
+                          // Fetchdetails(index) ,
                           Text(global.trainers[index]['name']==null?"":global.trainers[index]['name'],
                               style: textStyle()),
                           IconButton(

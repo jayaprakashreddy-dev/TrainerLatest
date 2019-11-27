@@ -88,7 +88,7 @@ class _ProfileEditState extends State<ProfileEdit> {
                           width: MediaQuery.of(context).size.width * 0.92,
                           child: TextFormField(
                             // keyboardType: TextInputType.number,
-                            controller: global.address,
+                            controller: global.addressController,
                             style: TextStyle(
                                 fontSize: 18.0,
                                 fontFamily: 'Montserrat',
@@ -146,6 +146,7 @@ class _ProfileEditState extends State<ProfileEdit> {
                                   // global.UserName=global.MobileNumber.text;
                                   global.emailId=global.emailIdController.text;
                                   global.referralCode=global.referralCodeController.text;
+                                  global.address=global.addressController.text;
 
 
 

@@ -320,7 +320,7 @@ getPackagesG() async {
     return WillPopScope(onWillPop: (){
 
 
-      callSnackBar("Click Exit to Leave App");
+      callSnackBar("Click Exit to Leave the App");
       
     },
    child: MaterialApp(

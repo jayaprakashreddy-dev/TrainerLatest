@@ -148,7 +148,7 @@ class _OtpEnterState extends State<OtpEnter> {
                         if(response.statusCode==200) {
                           jsonResponse = json.decode(response.body);
                           if(jsonResponse['success']==true) {
-                            print("true");
+                            print(" jp  true");
                             global.token=jsonResponse['token'];
                             print(global.token);
                             print("object");
