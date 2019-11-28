@@ -65,10 +65,40 @@ final GlobalKey<ScaffoldState> _scaffoldKey=GlobalKey<ScaffoldState>();
     getTrainers();
     getPackagesS();
     getPackagesG();
-
+    getSessions();
     
   }
 
+
+
+getSessions() async {
+    var response = await http
+        .get("http://test.letsdooit.in:3000/api/workplace/getsessiontypes", headers: {
+      // "Content-type": "application/x-www-form-urlencoded",
+      "token":global.token,
+          // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Ijc3Mzg2OTU5MjgiLCJpYXQiOjE1NzQ2MDcwNTAsImV4cCI6MTE2NTQ2MDcwNTB9.-eHmrhKWK4dBMESMLOD79QRQGx7J75MneKnkcnmQ6bA",
+    });
+    if (response.statusCode == 200) {
+      jsonResponse = json.decode(response.body);
+      if (jsonResponse['success'] == true) {
+        setState(() {
+        global.sessions=jsonResponse['sessiontypes'];
+        print("printing "+global.sessions );
+       global.selectedGold= global.sessions.contains("gold");
+       global.selectedSilver= global.sessions.contains("silver");
+       global.selectedPl= global.sessions.contains("platinum");
+
+        // print(global.AccountDetails);
+        // global.referralCode=global.AccountDetails['workplace']['uid'];
+        // print(global.referralCode);
+        //  global.userName=jsonResp,
+        //  global.phone=,
+        });
+      }
+    } else {
+      print('error');
+    }
+  }
 
 getPackagesS() async {
   
@@ -76,7 +106,7 @@ getPackagesS() async {
       "category":"silver",
     };
     var response = await http
-        .post("http://34.93.104.9:3000/api/workplace/getpackages",body: data, headers: {
+        .post("http://test.letsdooit.in:3000/api/workplace/getpackages",body: data, headers: {
       // "Content-type": "application/x-www-form-urlencoded",
       "token":global.token,
           // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Ijc3Mzg2OTU5MjgiLCJpYXQiOjE1NzQ2MDcwNTAsImV4cCI6MTE2NTQ2MDcwNTB9.-eHmrhKWK4dBMESMLOD79QRQGx7J75MneKnkcnmQ6bA",
@@ -103,7 +133,7 @@ getPackagesG() async {
       "category":"gold",
     };
     var response = await http
-        .post("http://34.93.104.9:3000/api/workplace/getpackages",body: data, headers: {
+        .post("http://test.letsdooit.in:3000/api/workplace/getpackages",body: data, headers: {
       // "Content-type": "application/x-www-form-urlencoded",
       "token":global.token,
           // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Ijc3Mzg2OTU5MjgiLCJpYXQiOjE1NzQ2MDcwNTAsImV4cCI6MTE2NTQ2MDcwNTB9.-eHmrhKWK4dBMESMLOD79QRQGx7J75MneKnkcnmQ6bA",
@@ -129,10 +159,11 @@ getPackagesG() async {
   
   getTrainers() async {
     var response = await http
-        .get("http://34.93.104.9:3000/api/workplace/gettrainers", headers: {
+        .get("http://test.letsdooit.in:3000/api/workplace/gettrainers", headers: {
       // "Content-type": "application/x-www-form-urlencoded",
-      "token":global.token,
-          // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Ijc3Mzg2OTU5MjgiLCJpYXQiOjE1NzQ2MDcwNTAsImV4cCI6MTE2NTQ2MDcwNTB9.-eHmrhKWK4dBMESMLOD79QRQGx7J75MneKnkcnmQ6bA",
+      "token":
+      // global.token,
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Ijc3Mzg2OTU5MjgiLCJpYXQiOjE1NzQ2MDcwNTAsImV4cCI6MTE2NTQ2MDcwNTB9.-eHmrhKWK4dBMESMLOD79QRQGx7J75MneKnkcnmQ6bA",
     });
     if (response.statusCode == 200) {
       jsonResponse = json.decode(response.body);
@@ -153,7 +184,7 @@ getPackagesG() async {
 
   getPaid() async {
     var response = await http
-        .get("http://34.93.104.9:3000/api/workplace/paidpackages", headers: {
+        .get("http://test.letsdooit.in:3000/api/workplace/paidpackages", headers: {
       // "Content-type": "application/x-www-form-urlencoded",
       "token": global.token,
       // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Ijc3Mzg2OTU5MjgiLCJpYXQiOjE1NzQ2MDcwNTAsImV4cCI6MTE2NTQ2MDcwNTB9.-eHmrhKWK4dBMESMLOD79QRQGx7J75MneKnkcnmQ6bA",
@@ -176,7 +207,7 @@ getPackagesG() async {
 
    getPending() async {
     var response = await http
-        .get("http://34.93.104.9:3000/api/workplace/unpaidpackages", headers: {
+        .get("http://test.letsdooit.in:3000/api/workplace/unpaidpackages", headers: {
       // "Content-type": "application/x-www-form-urlencoded",
       "token": global.token,
       // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Ijc3Mzg2OTU5MjgiLCJpYXQiOjE1NzQ2MDcwNTAsImV4cCI6MTE2NTQ2MDcwNTB9.-eHmrhKWK4dBMESMLOD79QRQGx7J75MneKnkcnmQ6bA",
@@ -204,7 +235,7 @@ getPackagesG() async {
 
   getConfirm() async {
     var response =
-        await http.get("http://34.93.104.9:3000/api/workplace/", headers: {
+        await http.get("http://test.letsdooit.in:3000/api/workplace/unpaidpackages", headers: {
       // "Content-type": "application/x-www-form-urlencoded",
       "token": global.token,
       // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Ijc3Mzg2OTU5MjgiLCJpYXQiOjE1NzQ2MDcwNTAsImV4cCI6MTE2NTQ2MDcwNTB9.-eHmrhKWK4dBMESMLOD79QRQGx7J75MneKnkcnmQ6bA",
@@ -232,7 +263,7 @@ getPackagesG() async {
 
   getUpcoming() async {
     var response = await http.get(
-        "http://34.93.104.9:3000/api/workplace/upcomingsessions",
+        "http://test.letsdooit.in:3000/api/workplace/upcomingsessions",
         headers: {
           "Content-type": "application/x-www-form-urlencoded",
           "token": global.token,
@@ -260,7 +291,7 @@ getPackagesG() async {
 
   getPast() async {
     var response = await http
-        .get("http://34.93.104.9:3000/api/workplace/pastsessions", headers: {
+        .get("http://test.letsdooit.in:3000/api/workplace/pastsessions", headers: {
       // "Content-type": "application/x-www-form-urlencoded",
       "token": global.token,
       // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Ijc3Mzg2OTU5MjgiLCJpYXQiOjE1NzQ2MDcwNTAsImV4cCI6MTE2NTQ2MDcwNTB9.-eHmrhKWK4dBMESMLOD79QRQGx7J75MneKnkcnmQ6bA",
@@ -285,7 +316,7 @@ getPackagesG() async {
   
  getAccountDetails() async {
     var response = await http
-        .get("http://34.93.104.9:3000/api/workplace/getaccountdetails", headers: {
+        .get("http://test.letsdooit.in:3000/api/workplace/getaccountdetails", headers: {
       // "Content-type": "application/x-www-form-urlencoded",
       "token":global.token,
           // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Ijc3Mzg2OTU5MjgiLCJpYXQiOjE1NzQ2MDcwNTAsImV4cCI6MTE2NTQ2MDcwNTB9.-eHmrhKWK4dBMESMLOD79QRQGx7J75MneKnkcnmQ6bA",
@@ -335,7 +366,7 @@ getPackagesG() async {
           key: _scaffoldKey,
           appBar: PreferredSize(
             preferredSize: Size.fromHeight(MediaQuery.of(context).size.height /
-                6.5), // here the desired height
+                7.5), // here the desired height
             child: AppBar(
               elevation: 0.0,
               actions: <Widget>[

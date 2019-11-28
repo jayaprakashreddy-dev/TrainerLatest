@@ -28,17 +28,17 @@ class _OtpEnterState extends State<OtpEnter> {
     _scaffoldkey2.currentState.showSnackBar(SnackBar);
   }
 
-  getCities() async {
-    var response =await http.get("http://34.93.104.9:3000/wapi/account/getcities",headers:{"Content-type": "application/x-www-form-urlencoded","token":global.token} );
-    if(response.statusCode==200) {
-      jsonResponse = json.decode(response.body);
-      print(jsonResponse);
-      global.City=jsonResponse;
-      print(global.City);
-      print(global.City['cities']);
-      print(global.City['cities'].length);
-    }
-  }
+  // getCities() async {
+  //   var response =await http.get("http://test.letsdooit.in:3000/wapi/account/getcities",headers:{"Content-type": "application/x-www-form-urlencoded","token":global.token} );
+  //   if(response.statusCode==200) {
+  //     jsonResponse = json.decode(response.body);
+  //     print(jsonResponse);
+  //     global.City=jsonResponse;
+  //     print(global.City);
+  //     print(global.City['cities']);
+  //     print(global.City['cities'].length);
+  //   }
+  // }
 
 
   @override
@@ -144,7 +144,7 @@ class _OtpEnterState extends State<OtpEnter> {
                           "otp":global.otpEntered.text
                         };
                         var jsonResponse;
-                        var response =await http.post("http://34.93.104.9:3000/wapi/login",body: data);
+                        var response =await http.post("http://test.letsdooit.in:3000/wapi/login",body: data);
                         if(response.statusCode==200) {
                           jsonResponse = json.decode(response.body);
                           if(jsonResponse['success']==true) {
@@ -155,7 +155,7 @@ class _OtpEnterState extends State<OtpEnter> {
                             SharedPreferences prefs = await SharedPreferences.getInstance();
                             prefs.setString('token',global.token);
                             // global.isLogged=true;
-                            getCities();
+                            // getCities();
                             if(jsonResponse['active']==true) {
                               print("active user");
                               // getCities();

@@ -27,7 +27,7 @@ class _ClientsState extends State<Clients> {
 
   // getPending() async {
   //   var response = await http
-  //       .get("http://34.93.104.9:3000/api/workplace/unpaidpackages", headers: {
+  //       .get("http://test.letsdooit.in:3000/api/workplace/unpaidpackages", headers: {
   //     // "Content-type": "application/x-www-form-urlencoded",
   //     "token": global.token,
   //     // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Ijc3Mzg2OTU5MjgiLCJpYXQiOjE1NzQ2MDcwNTAsImV4cCI6MTE2NTQ2MDcwNTB9.-eHmrhKWK4dBMESMLOD79QRQGx7J75MneKnkcnmQ6bA",
@@ -55,7 +55,7 @@ class _ClientsState extends State<Clients> {
 
   // getConfirm() async {
   //   var response =
-  //       await http.get("http://34.93.104.9:3000/api/workplace/", headers: {
+  //       await http.get("http://test.letsdooit.in:3000/api/workplace/", headers: {
   //     // "Content-type": "application/x-www-form-urlencoded",
   //     "token": global.token,
   //     // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Ijc3Mzg2OTU5MjgiLCJpYXQiOjE1NzQ2MDcwNTAsImV4cCI6MTE2NTQ2MDcwNTB9.-eHmrhKWK4dBMESMLOD79QRQGx7J75MneKnkcnmQ6bA",
@@ -86,7 +86,7 @@ class _ClientsState extends State<Clients> {
       theme: ThemeData(primaryColor: Colors.white, accentColor: Colors.red),
       debugShowCheckedModeBanner: false,
       home: new DefaultTabController(
-        length: 3,
+        length: 2,
         child: new Scaffold(
           appBar: PreferredSize(
             preferredSize:
@@ -116,15 +116,15 @@ class _ClientsState extends State<Clients> {
                           fontSize: MediaQuery.of(context).size.height / 42.0),
                     ),
                   ),
-                  Tab(
-                    child: Text(
-                      "Rates",
-                      style: TextStyle(
-                          color: Colors.black,
-                          backgroundColor: Colors.white,
-                          fontSize: MediaQuery.of(context).size.height / 40.0),
-                    ),
-                  ),
+                  // Tab(
+                  //   child: Text(
+                  //     "Rates",
+                  //     style: TextStyle(
+                  //         color: Colors.black,
+                  //         backgroundColor: Colors.white,
+                  //         fontSize: MediaQuery.of(context).size.height / 40.0),
+                  //   ),
+                  // ),
                 ],
               ),
             ),
@@ -133,7 +133,7 @@ class _ClientsState extends State<Clients> {
             children: <Widget>[
               Pending(),
               Confirmed(),
-              Rates(),
+              // Rates(),
             ],
           ),
         ),
@@ -184,6 +184,7 @@ class _PendingState extends State<Pending> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: <Widget>[
+                                      Text("\n"),
                                       Text(
                                         // 'Gold Trainer 5 Sessions',
                                         global.unpaidPackages[index]
@@ -284,14 +285,14 @@ class _PendingState extends State<Pending> {
                     ),
                   ),
                   onPressed: () async {
-                    print("Clciked");
+                    print("Clciked and waiting");
                     var jsonResponse;
 
                     Map data = {
                       "upackid": global.unpaidPackagesId,
                     };
                     var response = await http.post(
-                        "http://34.93.104.9:3000/api/workplace/paymentdone",
+                        "http://test.letsdooit.in:3000/api/workplace/paymentdone",
                         body: data,
                         headers: {
                           // "Content-type": "application/x-www-form-urlencoded",
@@ -304,7 +305,8 @@ class _PendingState extends State<Pending> {
                         setState(() {
                           // global.completedSlots = jsonResponse['completedsession'];
                           print("confirming");
-                          Navigator.pushReplacementNamed(context, "Trainers");
+                          Navigator.pop(context);
+                          // Navigator.pushReplacementNamed(context, "Trainers");
                           // getAccountDetails();
                           // getConfirm();
                         });
@@ -312,7 +314,9 @@ class _PendingState extends State<Pending> {
                     } else {
                       print('error');
                     }
+                    Navigator.pop(context);
                   },
+                  
                 )
               ],
             ),
@@ -340,7 +344,7 @@ class _ConfirmedState extends State<Confirmed> {
 
   // getPaid() async {
   //   var response = await http
-  //       .get("http://34.93.104.9:3000/api/workplace/paidpackages", headers: {
+  //       .get("http://test.letsdooit.in:3000/api/workplace/paidpackages", headers: {
   //     // "Content-type": "application/x-www-form-urlencoded",
   //     "token": global.token,
   //     // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Ijc3Mzg2OTU5MjgiLCJpYXQiOjE1NzQ2MDcwNTAsImV4cCI6MTE2NTQ2MDcwNTB9.-eHmrhKWK4dBMESMLOD79QRQGx7J75MneKnkcnmQ6bA",
@@ -394,6 +398,7 @@ class _ConfirmedState extends State<Confirmed> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: <Widget>[
+                                      Text("\n"),
                                       Text(
                                         // 'Gold Trainer 5 Sessions',
                                         global.paidPackages[index]
@@ -467,65 +472,6 @@ class _ConfirmedState extends State<Confirmed> {
                     )
                     )
 
-
-      // SizedBox(
-      //     height: MediaQuery.of(context).size.height * 0.18,
-      //     width: MediaQuery.of(context).size.width * 0.95,
-      //     child: Row(
-      //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      //       children: <Widget>[
-      //         SizedBox(
-      //           width: MediaQuery.of(context).size.width * 0.35,
-      //           child: ShowImage('gym_pic2'),
-      //         ),
-      //         SizedBox(
-      //           width: MediaQuery.of(context).size.width * 0.50,
-      //           child: Column(
-      //             // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      //             crossAxisAlignment: CrossAxisAlignment.start,
-      //             children: <Widget>[
-      //               Text(
-      //                 'Gold Trainer 5 Sessions',
-      //                 style: TextStyle(
-      //                     fontWeight: FontWeight.w600, fontSize: 18.0),
-      //               ),
-      //               Text(
-      //                 'Fusion Gym',
-      //                 style: TextStyle(
-      //                     fontSize: 18.0, fontWeight: FontWeight.w400),
-      //               ),
-      //               Row(
-      //                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      //                 children: <Widget>[
-      //                   Text(
-      //                     'Client: Utkarsh',
-      //                     style: TextStyle(
-      //                         fontWeight: FontWeight.w600, fontSize: 18.0),
-      //                   ),
-      //                   IconButton(
-      //                     icon: Icon(Icons.phone_in_talk),
-      //                     onPressed: () {},
-      //                   ),
-      //                 ],
-      //               ),
-      //               Text(
-      //                 'Payment ',
-      //                 style: TextStyle(
-      //                     fontWeight: FontWeight.w600,
-      //                     color: Colors.red,
-      //                     fontSize: 20.0),
-      //               )
-      //             ],
-      //           ),
-      //         ),
-      //         // SizedBox(
-              //   width: MediaQuery.of(context).size.width * 0.20,
-              //   child:
-              //   IconButton(
-              //     icon: Icon(Icons.phone_in_talk),
-              //     onPressed: () {},
-              //   ),
-              // )
         ]
         
     );
@@ -543,159 +489,6 @@ class _RatesState extends State<Rates> {
   @override
   Widget build(BuildContext context) {
     return SankethHome();
-    // return Scaffold(
-    //   body: ListView(
-    //     children: <Widget>[
-    //       SizedBox(
-    //           height: MediaQuery.of(context).size.height * 0.07,
-    //           child: Center(
-    //             child: Text(
-    //               'Gold Trainer Sessions',
-    //               style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w500),
-    //             ),
-    //           )),
-    //       SizedBox(
-    //         height: MediaQuery.of(context).size.height * 0.07,
-    //         child: Row(
-    //           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    //           children: <Widget>[
-    //             Text(
-    //               'Sessions',
-    //               style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w700),
-    //             ),
-    //             Text(
-    //               'Current Rates',
-    //               style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w700),
-    //             ),
-    //             Text(
-    //               'New Rates',
-    //               style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w700),
-    //             ),
-    //           ],
-    //         ),
-    //       ),
-    //       SizedBox(
-    //         height: MediaQuery.of(context).size.height * 0.07,
-    //         child: Row(
-    //           mainAxisAlignment: MainAxisAlignment.spaceAround,
-    //           children: <Widget>[
-    //             Text('10',
-    //                 style:
-    //                     TextStyle(fontWeight: FontWeight.w600, fontSize: 18.0)),
-    //             Text('₹' + global.currate,
-    //                 style:
-    //                     TextStyle(fontWeight: FontWeight.w600, fontSize: 18.0)),
-    //             TextField(
-    //               controller: global.userNameController,
-    //               keyboardType: TextInputType.number,
-    //               decoration: new InputDecoration(
-    //                 suffixStyle: TextStyle(
-    //                     fontSize: MediaQuery.of(context).size.height * 0.035,
-    //                     color: Colors.red),
-    //                 prefixText: "\$",
-    //                 prefixStyle: TextStyle(
-    //                     fontSize: MediaQuery.of(context).size.height * 0.035,
-    //                     color: Colors.red),
-    //                 hintText: global.currate,
-    //                 hintStyle: TextStyle(
-    //                     fontSize: MediaQuery.of(context).size.height * 0.035,
-    //                     color: Colors.red),
-    //               ),
-    //             ),
-    //             // Text('154',
-    //             //     style:
-    //             //         TextStyle(fontWeight: FontWeight.w600, fontSize: 18.0))
-    //           ],
-    //         ),
-    //       ),
-    //       SizedBox(
-    //         height: MediaQuery.of(context).size.height * 0.025,
-    //       ),
-    //       SizedBox(
-    //           height: MediaQuery.of(context).size.height * 0.05,
-    //           child: Center(
-    //             child: RaisedButton(
-    //               color: Colors.white,
-    //               child: Text(
-    //                 "Confirm New Rates",
-    //                 style: TextStyle(
-    //                     color: Colors.red,
-    //                     fontSize: MediaQuery.of(context).size.height * 0.025),
-    //               ),
-    //               onPressed: () => null,
-    //             ),
-    //           )),
-    //       SizedBox(
-    //         height: MediaQuery.of(context).size.height * 0.03,
-    //       ),
-    //       Divider(
-    //         // height:5.0,
-    //         thickness: 1.0,
-    //       ),
-    //       SizedBox(
-    //           height: MediaQuery.of(context).size.height * 0.07,
-    //           child: Center(
-    //             child: Text(
-    //               ' Silver Trainer Sessions',
-    //               style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w500),
-    //             ),
-    //           )),
-    //       SizedBox(
-    //         height: MediaQuery.of(context).size.height * 0.07,
-    //         child: Row(
-    //           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    //           children: <Widget>[
-    //             Text(
-    //               'Sessions',
-    //               style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500),
-    //             ),
-    //             Text(
-    //               'Current Rates',
-    //               style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500),
-    //             ),
-    //             Text(
-    //               'New Rates',
-    //               style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500),
-    //             ),
-    //           ],
-    //         ),
-    //       ),
-    //       SizedBox(
-    //         height: MediaQuery.of(context).size.height * 0.07,
-    //         child: Row(
-    //           mainAxisAlignment: MainAxisAlignment.spaceAround,
-    //           children: <Widget>[
-    //             Text('10',
-    //                 style:
-    //                     TextStyle(fontWeight: FontWeight.w600, fontSize: 18.0)),
-    //             Text('100',
-    //                 style:
-    //                     TextStyle(fontWeight: FontWeight.w600, fontSize: 18.0)),
-    //             Text('154',
-    //                 style:
-    //                     TextStyle(fontWeight: FontWeight.w600, fontSize: 18.0))
-    //           ],
-    //         ),
-    //       ),
-    //       SizedBox(
-    //           height: MediaQuery.of(context).size.height * 0.05,
-    //           child: Center(
-    //             child: RaisedButton(
-    //               color: Colors.white,
-    //               child: Text(
-    //                 "Confirm New Rates",
-    //                 style: TextStyle(
-    //                     color: Colors.red,
-    //                     fontSize: MediaQuery.of(context).size.height * 0.025),
-    //               ),
-    //               onPressed: () => null,
-    //             ),
-    //           )),
-    //       SizedBox(
-    //         height: MediaQuery.of(context).size.height * 0.03,
-    //       ),
-    //     ],
-    //   ),
-    // );
+   
   }
 }

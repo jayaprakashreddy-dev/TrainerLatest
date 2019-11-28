@@ -25,16 +25,25 @@ var AccountDetails,upcomingsessions,pastsessions,spackages,gpackages;
 var unpaidPackages,paidPackages,rates;
 var unpaidPackagesId;
 var address;
-
+var sessions;
 var g1=400;
 var g5=600;
 var g10=800;
 var s1=200;
 var s5=400;
 var s10=700;
+var gr1=600;
+var gr5=700;
+var gr10=1000;
+bool selectedSilver=false;
+bool selectedGold=false;
+bool selectedPl=false;
+
+List<String> categoryTemp = new List<String>();
 
 var s1id,s5id,s10id;
 var g1id,g5id,g10id;
+var gr1id,gr5id,gr10id;
 
 var slots;
 //slot data
@@ -66,4 +75,4 @@ TextEditingController ownerNAmeController = new TextEditingController();
 TextEditingController gymAddressController = new TextEditingController();
 TextEditingController cityNameController = new TextEditingController();
 TextEditingController addressController = new TextEditingController();
-const url = "http://34.93.104.9:3000/api";
+const url = "http://test.letsdooit.in:3000/api";

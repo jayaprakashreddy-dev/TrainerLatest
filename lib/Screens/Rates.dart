@@ -20,6 +20,10 @@ class _SankethHomeState extends State<SankethHome> {
   final stext1 = TextEditingController();
   final stext5 = TextEditingController();
   final stext10 = TextEditingController();
+
+  final grtext1 = TextEditingController();
+  final grtext5 = TextEditingController();
+  final grtext10 = TextEditingController();
   
 
 
@@ -39,14 +43,25 @@ class _SankethHomeState extends State<SankethHome> {
 
 
 
-    global.g1=global.spackages[0]['total_cost']==null?global.g1:global.spackages[0]['total_cost'];
-    global.g1id=global.spackages[0]['_id']==null?global.g1id:global.spackages[0]['_id'];
+    global.g1=global.gpackages[0]['total_cost']==null?global.g1:global.gpackages[0]['total_cost'];
+    global.g1id=global.gpackages[0]['_id']==null?global.g1id:global.gpackages[0]['_id'];
     
-    global.g5=global.spackages[1]['total_cost']==null?global.g5:global.spackages[1]['total_cost'];
-    global.g5id=global.spackages[1]['_id']==null?global.g5id:global.spackages[1]['_id'];
+    global.g5=global.gpackages[1]['total_cost']==null?global.g5:global.gpackages[1]['total_cost'];
+    global.g5id=global.gpackages[1]['_id']==null?global.g5id:global.gpackages[1]['_id'];
 
-    global.g10=global.spackages[2]['total_cost']==null?global.g5:global.spackages[2]['total_cost'];
-    global.g10id=global.spackages[2]['_id']==null?global.g10id:global.spackages[2]['_id'];
+    global.g10=global.gpackages[2]['total_cost']==null?global.g5:global.gpackages[2]['total_cost'];
+    global.g10id=global.gpackages[2]['_id']==null?global.g10id:global.gpackages[2]['_id'];
+
+
+    
+    global.gr1=global.gpackages[0]['total_cost']==null?global.g1:global.spackages[0]['total_cost'];
+    global.gr1id=global.spackages[0]['_id']==null?global.g1id:global.spackages[0]['_id'];
+    
+    global.gr5=global.spackages[1]['total_cost']==null?global.g5:global.spackages[1]['total_cost'];
+    global.gr5id=global.spackages[1]['_id']==null?global.g5id:global.spackages[1]['_id'];
+
+    global.gr10=global.spackages[2]['total_cost']==null?global.g5:global.spackages[2]['total_cost'];
+    global.gr10id=global.spackages[2]['_id']==null?global.g10id:global.spackages[2]['_id'];
 
     // myController.addListener();
   }
@@ -59,6 +74,9 @@ class _SankethHomeState extends State<SankethHome> {
     stext1.dispose();
     stext5.dispose();
     stext10.dispose();
+      grtext1.dispose();
+    grtext5.dispose();
+    grtext10.dispose();
     super.dispose();
   }
 
@@ -72,7 +90,7 @@ class _SankethHomeState extends State<SankethHome> {
       //     ),
       body: ListView(
         children: <Widget>[
-          SizedBox(
+       global.selectedGold!=true?Text("selected only silver"):   SizedBox(
             width: MediaQuery.of(context).size.width * 0.96,
             height: MediaQuery.of(context).size.height * 0.89,
             child: Column(
@@ -84,7 +102,7 @@ class _SankethHomeState extends State<SankethHome> {
                     top: MediaQuery.of(context).size.height * 0.04,
                   ),
                   child: Text(
-                    "Gold Trainer Sessions",
+                    "Group Trainer Sessions",
                     style: TextStyle(
                       fontSize: MediaQuery.of(context).size.height * 0.029,
                       fontWeight: FontWeight.bold,
@@ -150,7 +168,7 @@ class _SankethHomeState extends State<SankethHome> {
                     ],
                     rows: [
                       DataRow(
-                        //for the data of session 1 in gold
+                        //for the data of session 1 in Group
                         cells: [
                           DataCell(
                             Text("1",
@@ -206,7 +224,7 @@ class _SankethHomeState extends State<SankethHome> {
                                   borderRadius: BorderRadius.all(Radius.circular(20.0))
                                   ),
                             
-                            title: Text("Gold 1 Session New Rate"),
+                            title: Text("Group 1 Session New Rate"),
                             titlePadding: EdgeInsets.all(20.0),
                             content:TextFormField(
                               // maxLength: 6,
@@ -253,7 +271,7 @@ class _SankethHomeState extends State<SankethHome> {
                         ],
                       ),
                       DataRow(
-                        //for the data of session 5 in gold
+                        //for the data of session 5 in Group
                         cells: [
                           DataCell(
                             Text("5",
@@ -309,7 +327,7 @@ class _SankethHomeState extends State<SankethHome> {
                                   borderRadius: BorderRadius.all(Radius.circular(20.0))
                                   ),
                             
-                            title: Text("Gold 5 Session New Rate"),
+                            title: Text("Group 5 Session New Rate"),
                             titlePadding: EdgeInsets.all(20.0),
                             content:TextFormField(
                               // maxLength: 6,
@@ -353,7 +371,7 @@ class _SankethHomeState extends State<SankethHome> {
                         ],
                       ),
                       DataRow(
-                        //for the data of session 10 in gold
+                        //for the data of session 10 in Group
                         cells: [
                           DataCell(
                             Text("10",
@@ -409,7 +427,7 @@ class _SankethHomeState extends State<SankethHome> {
                                   borderRadius: BorderRadius.all(Radius.circular(20.0))
                                   ),
                             
-                            title: Text("Gold 10 Session New Rate"),
+                            title: Text("Group 10 Session New Rate"),
                             titlePadding: EdgeInsets.all(20.0),
                             content:TextFormField(
                               // maxLength: 6,
@@ -963,7 +981,7 @@ class _SankethHomeState extends State<SankethHome> {
 
                                 };
                                 var response = await http
-                                    .post("http://34.93.104.9:3000/api/workplace/updaterates",body: data, headers: {
+                                    .post("http://test.letsdooit.in:3000/api/workplace/updaterates",body: data, headers: {
                                   // "Content-type": "application/x-www-form-urlencoded",
                                   "token":global.token,
                                       // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Ijc3Mzg2OTU5MjgiLCJpYXQiOjE1NzQ2MDcwNTAsImV4cCI6MTE2NTQ2MDcwNTB9.-eHmrhKWK4dBMESMLOD79QRQGx7J75MneKnkcnmQ6bA",
@@ -1020,7 +1038,7 @@ class _SankethHomeState extends State<SankethHome> {
                       Align(
                         alignment: Alignment.topCenter,
                         child: Text(
-                          'Gold Trainer Sessions',
+                          'Group Trainer Sessions',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Colors.black,

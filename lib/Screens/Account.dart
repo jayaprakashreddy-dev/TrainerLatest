@@ -24,7 +24,7 @@ class _AccountDetailsState extends State<AccountDetails> {
     callForDetails();
   }
   callForDetails() async{
-    var response =await http.get("http://34.93.104.9:3000/api/account/getaccountdetails",headers:{"Content-type": "application/x-www-form-urlencoded","token":global.token} );
+    var response =await http.get("http://test.letsdooit.in:3000/api/account/getaccountdetails",headers:{"Content-type": "application/x-www-form-urlencoded","token":global.token} );
     if(response.statusCode==200) {
       setState(() {
         jsonResponse = json.decode(response.body);

@@ -157,7 +157,7 @@ class _ProfileEditState extends State<ProfileEdit> {
 
                                   };
                                   var jsonResponse;
-                                  var response =await http.post("http://34.93.104.9:3000/api/workplace/updateaccount",body: data,headers:{"Content-type": "application/x-www-form-urlencoded","token":global.token} );
+                                  var response =await http.post("http://test.letsdooit.in:3000/api/workplace/updateaccount",body: data,headers:{"Content-type": "application/x-www-form-urlencoded","token":global.token} );
                                   print("hitted");
                                   if(response.statusCode==200)
                                   {

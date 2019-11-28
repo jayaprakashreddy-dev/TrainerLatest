@@ -127,8 +127,8 @@ class _NumberEntryState extends State<NumberEntry> {
                     onPressed: () async{
                       callSnackBar("OTP is sending to your Number....");
                       await http.post(
-                        // "http://34.93.104.9:3000/api/signup",
-                        "http://34.93.104.9:3000/wapi/signup",
+                        // "http://test.letsdooit.in:3000/api/signup",
+                        "http://test.letsdooit.in:3000/wapi/signup",
                         body: json.encode({
                           "phone": global.mobileNumber.text
                         }),

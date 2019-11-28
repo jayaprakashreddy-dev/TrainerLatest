@@ -34,7 +34,7 @@ class _TrainerState extends State<Trainer> {
 
   // getTrainers() async {
   //   var response = await http
-  //       .get("http://34.93.104.9:3000/api/workplace/gettrainers", headers: {
+  //       .get("http://test.letsdooit.in:3000/api/workplace/gettrainers", headers: {
   //     // "Content-type": "application/x-www-form-urlencoded",
   //     "token":global.token,
   //         // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Ijc3Mzg2OTU5MjgiLCJpYXQiOjE1NzQ2MDcwNTAsImV4cCI6MTE2NTQ2MDcwNTB9.-eHmrhKWK4dBMESMLOD79QRQGx7J75MneKnkcnmQ6bA",
@@ -71,7 +71,7 @@ class _TrainerState extends State<Trainer> {
         child: new Scaffold(
           appBar: PreferredSize(
             preferredSize: Size.fromHeight(MediaQuery.of(context).size.height /
-                12.0), // here the desired height
+                15.0), // here the desired height
             child: AppBar(
               elevation: 0.0,
               backgroundColor: Colors.white,
@@ -84,7 +84,7 @@ class _TrainerState extends State<Trainer> {
                             color: Colors.black,
                             backgroundColor: Colors.white,
                             fontSize:
-                                MediaQuery.of(context).size.height / 35.0)),
+                                MediaQuery.of(context).size.height / 50.0)),
                   ),
                   Tab(child:  Text("Trainer Access",
                         textAlign: TextAlign.left,
@@ -92,14 +92,14 @@ class _TrainerState extends State<Trainer> {
                             color: Colors.black,
                             backgroundColor: Colors.white,
                             fontSize:
-                                MediaQuery.of(context).size.height / 35.0)),),
+                                MediaQuery.of(context).size.height / 50.0)),),
                        Tab(child:  Text("Rates",
                         textAlign: TextAlign.left,
                         style: TextStyle(
                             color: Colors.black,
                             backgroundColor: Colors.white,
                             fontSize:
-                                MediaQuery.of(context).size.height / 35.0)),),          
+                                MediaQuery.of(context).size.height / 50.0)),),          
                 ],
               ),
             ),
@@ -133,7 +133,7 @@ class _TrainerAccessState extends State<TrainerAccess> {
       Column(
         children: <Widget>[
           Padding(
-            padding: EdgeInsets.only(left: 1.0, right: 5.0),
+            padding: EdgeInsets.only(left: 1.0, right: 5.0,top: 8.0),
             // height: MediaQuery.of(context).size.height * 0.05,
             // width: MediaQuery.of(context).size.width * 1.0,
             child: Row(
@@ -159,18 +159,38 @@ class _TrainerAccessState extends State<TrainerAccess> {
                 : ListView.builder(
                     itemCount: global.trainers.length,
                     itemBuilder: (context, index) {
+                       List<dynamic> gol=new List(global.trainers.length);//make it to dynamic
+                    List<dynamic> sil=List(global.trainers.length);//make it to dynamic
+                    List<dynamic> grp=List(global.trainers.length);//make it to dynamic
+                    print(global.trainers[0]['category'].contains("gold"));
+                    print(global.trainers[0]['category'].contains("silver"));
+
+                    gol[index]=global.trainers[index]['category'].contains("gold");
+                    sil[index]=global.trainers[index]['category'].contains("silver");
+                    grp[index]=global.trainers[index]['category'].contains("group");
+
                       return global.trainers[index]==null?Center(child: Text("no data for trainers")):
                        Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        
                         children: <Widget>[
 
                             // SizedBox(
                             //   height: MediaQuery.of(context).size.height*0.001,
                             //   child: Fetchdetails(index) ,),
                           // Fetchdetails(index) ,
-                          Text(global.trainers[index]['name']==null?"":global.trainers[index]['name'],
-                              style: textStyle()),
-                          IconButton(
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width/4,
+                            child: Text(global.trainers[index]['name']==null?"":global.trainers[index]['name'],
+                              style: textStyle()),),
+                                                        Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: <Widget>[
+                                    
+                          SizedBox(
+                             width: MediaQuery.of(context).size.width/4,
+                            child: Row(children: <Widget>[
+                            
+                             IconButton(
                             iconSize: 15.0,
                             icon: Icon(Icons.phone_in_talk),
                             onPressed: () {
@@ -179,34 +199,47 @@ class _TrainerAccessState extends State<TrainerAccess> {
                                   "tel:+91${global.trainers[index]['phone']}");
                             },
                           ),
-                          Checkbox(
-                            value: golVal1,
-                            onChanged: (bool value) async {
-                              // setState(() async {
-                              golVal1 = value;
+                             Checkbox(
+                            value: gol[index],
+                            onChanged: (bool value)  {
+                              print("Changed0");
+                             setState(() {
+                               gol[index] = !gol[index];
+                              // Navigator.pushNamed(context,"All");
+                             }); 
+                              // Trainer();
+                              // Clients();
                               // global.index=index;
 
                               
                             },
                           ),
-                          Checkbox(
-                            value: silVal1,
+                          ],),),
+                            SizedBox(
+                             width: MediaQuery.of(context).size.width/6,
+                          child:Checkbox(
+                            value: sil[index],
                             onChanged: (bool value) {
                               setState(() {
-                                silVal1 = value;
+                                sil[index] = !sil[index];
                                 //  global.index=index;
                               });
                             },
                           ),
+                            ),
+                             SizedBox(
+                             width: MediaQuery.of(context).size.width/7,
+                          child:
                           Checkbox(
-                            value: gruVal1,
+                            value: grp[index],
                             onChanged: (bool value) {
                               setState(() {
-                                gruVal1 = value;
+                                 grp[index] =!grp[index];
                                 //  global.index=index;
                               });
                             },
                           ),
+                             ),
                           InkWell(
                             
                             child: Text(
@@ -221,6 +254,8 @@ class _TrainerAccessState extends State<TrainerAccess> {
 
                             },
                           ),
+                              ],)
+                         
                           // Fetch(),
                         ],
                       );
