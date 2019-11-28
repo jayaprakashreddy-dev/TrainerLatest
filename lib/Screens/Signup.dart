@@ -206,7 +206,7 @@ class _SignUpState extends State<SignUp> {
           Map data = {
             "name": global.userName,
             "email": global.emailId,
-            "referalid": global.referralCode,
+            "centercode": global.referralCode,
             "oname": global.oname,
             "city": global.cityname,
             "address": global.gymAddress,

@@ -39,6 +39,8 @@ bool selectedSilver=false;
 bool selectedGold=false;
 bool selectedPl=false;
 
+var category;
+
 List<String> categoryTemp = new List<String>();
 
 var s1id,s5id,s10id;
@@ -76,3 +78,34 @@ TextEditingController gymAddressController = new TextEditingController();
 TextEditingController cityNameController = new TextEditingController();
 TextEditingController addressController = new TextEditingController();
 const url = "http://test.letsdooit.in:3000/api";
+
+
+  final gtext1 = TextEditingController();
+  final gtext5 = TextEditingController();
+  final gtext10 = TextEditingController();
+  final stext1 = TextEditingController();
+  final stext5 = TextEditingController();
+  final stext10 = TextEditingController();
+
+  final grtext1 = TextEditingController();
+  final grtext5 = TextEditingController();
+  final grtext10 = TextEditingController();
+  
+
+var tempForCategory="";
+
+  
+
+  @override
+  void dispose() {
+    gtext1.dispose();
+    gtext5.dispose();
+    gtext10.dispose();
+    stext1.dispose();
+    stext5.dispose();
+    stext10.dispose();
+      grtext1.dispose();
+    grtext5.dispose();
+    grtext10.dispose();
+    // super.dispose();
+  }

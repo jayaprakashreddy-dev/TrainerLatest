@@ -145,7 +145,7 @@ class _ProfileEditState extends State<ProfileEdit> {
                                   global.userName=global.userNameController.text;
                                   // global.UserName=global.MobileNumber.text;
                                   global.emailId=global.emailIdController.text;
-                                  global.referralCode=global.referralCodeController.text;
+                                  // global.referralCode=global.referralCodeController.text;
                                   global.address=global.addressController.text;
 
 

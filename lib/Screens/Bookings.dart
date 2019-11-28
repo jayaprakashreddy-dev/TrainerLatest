@@ -46,11 +46,7 @@ final GlobalKey<ScaffoldState> _scaffoldKey=GlobalKey<ScaffoldState>();
     // TODO: implement initState
     super.initState();
     getData();
-    // getUpcoming();
-    // getPast();
-    // getAccountDetails();
-    // getPending();
-    // getConfirm();
+    
   }
 
   getData()async{
@@ -65,40 +61,36 @@ final GlobalKey<ScaffoldState> _scaffoldKey=GlobalKey<ScaffoldState>();
     getTrainers();
     getPackagesS();
     getPackagesG();
-    getSessions();
+    // getSessions();
     
   }
 
 
 
-getSessions() async {
-    var response = await http
-        .get("http://test.letsdooit.in:3000/api/workplace/getsessiontypes", headers: {
-      // "Content-type": "application/x-www-form-urlencoded",
-      "token":global.token,
-          // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Ijc3Mzg2OTU5MjgiLCJpYXQiOjE1NzQ2MDcwNTAsImV4cCI6MTE2NTQ2MDcwNTB9.-eHmrhKWK4dBMESMLOD79QRQGx7J75MneKnkcnmQ6bA",
-    });
-    if (response.statusCode == 200) {
-      jsonResponse = json.decode(response.body);
-      if (jsonResponse['success'] == true) {
-        setState(() {
-        global.sessions=jsonResponse['sessiontypes'];
-        print("printing "+global.sessions );
-       global.selectedGold= global.sessions.contains("gold");
-       global.selectedSilver= global.sessions.contains("silver");
-       global.selectedPl= global.sessions.contains("platinum");
+// getSessions() async {
+//     var response = await http
+//         .get("http://test.letsdooit.in:3000/api/workplace/getsessiontypes", headers: {
+//       // "Content-type": "application/x-www-form-urlencoded",
+//       "token":global.token,
+//           // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Ijc3Mzg2OTU5MjgiLCJpYXQiOjE1NzQ2MDcwNTAsImV4cCI6MTE2NTQ2MDcwNTB9.-eHmrhKWK4dBMESMLOD79QRQGx7J75MneKnkcnmQ6bA",
+//     });
+//     if (response.statusCode == 200) {
+//       jsonResponse = json.decode(response.body);
+//       if (jsonResponse['success'] == true) {
+//         setState(() {
+//         global.sessions=jsonResponse['sessiontypes'];
+//         print("printing "+global.sessions );
+//       //  global.selectedGold= global.sessions.contains("gold");
+//       //  global.selectedSilver= global.sessions.contains("silver");
+//       //  global.selectedPl= global.sessions.contains("platinum");
 
-        // print(global.AccountDetails);
-        // global.referralCode=global.AccountDetails['workplace']['uid'];
-        // print(global.referralCode);
-        //  global.userName=jsonResp,
-        //  global.phone=,
-        });
-      }
-    } else {
-      print('error');
-    }
-  }
+
+//         });
+//       }
+//     } else {
+//       print('error');
+//     }
+//   }
 
 getPackagesS() async {
   
@@ -144,9 +136,7 @@ getPackagesG() async {
         setState(() {
           // global.completedSlots = jsonResponse['completedsession'];
           global.gpackages = jsonResponse['packages'];
-          // print(global.trainers);
-          // print(global.trainers.length);
-          // getAccountDetails();
+          
         });
       }
     } else {
@@ -325,12 +315,20 @@ getPackagesG() async {
       jsonResponse = json.decode(response.body);
       if (jsonResponse['success'] == true) {
         setState(() {
+             jsonResponse = json.decode(response.body);
+        global.userName=jsonResponse['workplace']['name'];
+        global.emailId=jsonResponse['account']['email'];
+        global.mobileNumber.text=jsonResponse['workplace']['phone'];
+        global.referralCode = jsonResponse['workplace']['uid'].toString();
+        global.category=jsonResponse['workplace']['category'];
         global.AccountDetails=jsonResponse;
-        // print(global.AccountDetails);
-        // global.referralCode=global.AccountDetails['workplace']['uid'];
-        // print(global.referralCode);
-        //  global.userName=jsonResp,
-        //  global.phone=,
+        print(global.AccountDetails);
+    //      global.selectedSilver=global.category.contains("gold");
+    // print("jp");
+    // print(global.selectedSilver);
+    // global.selectedGold=global.category.contains("silver");
+    // global.selectedPl=global.category.contains("platinum");
+       
         });
       }
     } else {

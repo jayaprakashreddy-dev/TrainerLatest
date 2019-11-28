@@ -21,17 +21,19 @@ class _AccountDetailsState extends State<AccountDetails> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    // global.userName
     callForDetails();
   }
   callForDetails() async{
-    var response =await http.get("http://test.letsdooit.in:3000/api/account/getaccountdetails",headers:{"Content-type": "application/x-www-form-urlencoded","token":global.token} );
+    var response =await http.get("http://test.letsdooit.in:3000/api/workplace/getaccountdetails",headers:{"Content-type": "application/x-www-form-urlencoded","token":global.token} );
     if(response.statusCode==200) {
       setState(() {
         jsonResponse = json.decode(response.body);
-        global.userName=jsonResponse['account']['name'];
-        global.emailId=jsonResponse['account']['email'];
-        global.mobileNumber.text=jsonResponse['account']['phone'];
-        // global.referralCode = jsonResponse['account']['referalcode'].toString();
+        global.AccountDetails=jsonResponse['workplace'];
+        global.userName=jsonResponse['workplace']['name'];
+        // global.emailId=jsonResponse['account']['email'];
+        global.mobileNumber.text=jsonResponse['workplace']['phone'];
+        global.referralCode = jsonResponse['workplace']['uid'];
       });
     }
   }
@@ -184,7 +186,7 @@ class _AccountDetailsState extends State<AccountDetails> {
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: <Widget>[
                                 Text(
-                                  global.mobileNumber.text,
+                                  global.mobileNumber==null?global.phone==null:global.mobileNumber.text,
                                   textDirection: TextDirection.ltr,
                                   style: TextStyle(
                                       fontSize: 20.0,

@@ -8,6 +8,20 @@ class SessionTypes extends StatefulWidget{
 }
 
 class _SessionTypesState extends State<SessionTypes> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    setState(() {
+    //       global.selectedSilver=global.category.contains("gold");
+    // print("jp");
+    // print(global.selectedSilver);
+    // global.selectedGold=global.category.contains("silver");
+    // global.selectedPl=global.category.contains("platinum");
+    });
+
+  }
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -112,10 +126,10 @@ class _SessionTypesState extends State<SessionTypes> {
 
                 Checkbox(value:
                             // true,
-                             global.selectedGold,
+                             global.selectedPl,
                             onChanged: (bool value) {
                               setState(()  {
-                              global.selectedGold= value;
+                              global.selectedPl= value;
                               });
                               // global.index=index;
 
